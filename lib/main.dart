@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:ilm/providers/selected_stations_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ilm 2.0 - Ilmajaam sinu taskus',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -73,8 +74,7 @@ class _StationCarouselState extends State<StationCarousel> {
                 case ConnectionState.waiting:
                   return new Text('Loading...');
                 default:
-                  List data =
-                      getFilteredStationsInOrder(snapshot.data.documents);
+                  List data = getFilteredStationsInOrder(snapshot.data.documents);
                   return new Swiper(
                     itemBuilder: (BuildContext context, int index) {
                       return new StationScreen(stationData: data[index]);
@@ -91,8 +91,8 @@ class _StationCarouselState extends State<StationCarousel> {
     );
   }
 
-  getFilteredStationsInOrder(List<DocumentSnapshot> documents) {
-    List<String> selectedStations = getSelectedStations();
+ List getFilteredStationsInOrder(List<DocumentSnapshot> documents) async {
+    List<String> selectedStations = await getSelectedStationsIds();
     List result = [];
 
     result = documents
@@ -105,14 +105,6 @@ class _StationCarouselState extends State<StationCarousel> {
   }
 }
 
-getSelectedStations(){
-  return [
-      'ILMATEENISTUS_Tallinn-Harku',
-      '8_Lihula',
-      'ILMATEENISTUS_Kuressaare linn',
-      'ILMATEENISTUS_Võru'
-    ];
-}
 
 Future<void> _refreshStockPrices() {
   print("Refresh called");

@@ -12,18 +12,20 @@ async function importIlmateenistus() {
     // let rawdata = fs.readFileSync('tarktee.json');
     // let data = JSON.parse(rawdata);
     //console.log(data.features);
-    var request = require("request");
-    let counter = 0;    
+    
+    const fetch = require('node-fetch');
 
-    let result = await request({
-        uri: "http://www.ilmateenistus.ee/ilm/ilmavaatlused/vaatlusandmed/tunniandmed/",
+    let counter = 0;
 
-    }, function (error, response, body) {
+    let url = "http://www.ilmateenistus.ee/ilm/ilmavaatlused/vaatlusandmed/tunniandmed/";
+
+    let settings = { method: "Get" };
+    
+
+    let result = await fetch(url, settings)
+    .then(res => res.text())
+    .then((body) => {
         
-        if (error) {
-            console.error("Did not happen: ", error);
-        }
-
         console.log("Got Ilmateenistus.ee content");
 
         const cheerio = require('cheerio');
@@ -31,7 +33,7 @@ async function importIlmateenistus() {
 
         // Find all rows in data table        
         $('.ajx-container').find('tr').each(function (i, elem) {
-            
+
             if (i > 0) {
                 let dataColumns = $(this).text().split('\n');
 
@@ -54,7 +56,7 @@ async function importIlmateenistus() {
                 }
             }
         });
-        
+
         return counter;
     });
 

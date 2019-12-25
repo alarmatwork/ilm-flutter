@@ -45,7 +45,7 @@ async function importTarktee() {
         });
 
     console.log('END importTarktee updated:', counter);
-    return result;
+    return counter;
 }
 
 

@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -35,21 +35,24 @@ exports.data = functions.https.onRequest((request, response) => {
 
 });
 
-exports.scheduledFunction = functions.pubsub.schedule('every 30 minutes').onRun((context) => {
+exports.scheduledTarkteeUpdate = functions.pubsub.schedule('every 30 minutes').onRun((context) => {
     console.log('Triggering Updates -TarkTee');
-    const pluginTarktee = require("./plugins/tarktee_importer");    
-    let tarkteeResult = pluginTarktee.importTarktee();
+    const pluginTarktee = require("./plugins/tarktee_importer");
+    let tarkteePromise = pluginTarktee.importTarktee().catch(error => { console.log('caught', err.message); });
 
-    console.log("Update Scheduler finished tarkteeResult: $tarkteeResult");
+    console.log("Update Scheduler finished tarkteeResult: ", tarkteePromise);
+    return tarkteePromise;
 });
 
 
-exports.scheduledFunction = functions.pubsub.schedule('10 */1 * * *').onRun((context) => {
-    console.log('Triggering Updates - Ilmateenistus');    
+exports.scheduledIlmateenistusUpdate = functions.pubsub.schedule('10 */1 * * *').onRun((context) => {
+    console.log('Triggering Updates - Ilmateenistus');
     const pluginIlmateenistus = require("./plugins/ilmateenistus_importer");
-    let ilmateenistusResult = pluginIlmateenistus.importIlmateenistus();
+    let ilmateenistusPromise = pluginIlmateenistus.importIlmateenistus().catch(error => { console.log('caught', err.message); });
 
-    console.log("Update Scheduler finished ilmateenistusResult:$ilmateenistusResult");
+    console.log('Update Scheduler finished ilmateenistusResult: ',ilmateenistusPromise);
+
+    return ilmateenistusPromise;
 });
 
 
