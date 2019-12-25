@@ -1,0 +1,1735 @@
+{
+    "displayFieldName": "site_name",
+    "fieldAliases": {
+        "objectid": "objectid",
+        "site_name": "site_name",
+        "road_status_aggregate": "road_status_aggregate",
+        "road_status": "road_status",
+        "road_temp": "road_temp",
+        "air_temp": "air_temp",
+        "precipitation_type": "precipitation_type",
+        "precipitation_intensity": "precipitation_intensity",
+        "wind_dir": "wind_dir",
+        "wind_speed": "wind_speed",
+        "air_humidity": "air_humidity",
+        "visibility": "visibility",
+        "measurement_time": "measurement_time"
+    },
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+        "wkid": 3301,
+        "latestWkid": 3301
+    },
+    "fields": [
+        {
+            "name": "objectid",
+            "type": "esriFieldTypeOID",
+            "alias": "objectid"
+        },
+        {
+            "name": "site_name",
+            "type": "esriFieldTypeString",
+            "alias": "site_name",
+            "length": 50
+        },
+        {
+            "name": "road_status_aggregate",
+            "type": "esriFieldTypeString",
+            "alias": "road_status_aggregate",
+            "length": 50
+        },
+        {
+            "name": "road_status",
+            "type": "esriFieldTypeString",
+            "alias": "road_status",
+            "length": 50
+        },
+        {
+            "name": "road_temp",
+            "type": "esriFieldTypeSingle",
+            "alias": "road_temp"
+        },
+        {
+            "name": "air_temp",
+            "type": "esriFieldTypeSingle",
+            "alias": "air_temp"
+        },
+        {
+            "name": "precipitation_type",
+            "type": "esriFieldTypeString",
+            "alias": "precipitation_type",
+            "length": 50
+        },
+        {
+            "name": "precipitation_intensity",
+            "type": "esriFieldTypeSingle",
+            "alias": "precipitation_intensity"
+        },
+        {
+            "name": "wind_dir",
+            "type": "esriFieldTypeInteger",
+            "alias": "wind_dir"
+        },
+        {
+            "name": "wind_speed",
+            "type": "esriFieldTypeSingle",
+            "alias": "wind_speed"
+        },
+        {
+            "name": "air_humidity",
+            "type": "esriFieldTypeSingle",
+            "alias": "air_humidity"
+        },
+        {
+            "name": "visibility",
+            "type": "esriFieldTypeInteger",
+            "alias": "visibility"
+        },
+        {
+            "name": "measurement_time",
+            "type": "esriFieldTypeDate",
+            "alias": "measurement_time",
+            "length": 8
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "objectid": 9,
+                "site_name": "Nurme",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.5,
+                "air_temp": 4.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 202,
+                "wind_speed": 2.3,
+                "air_humidity": 100,
+                "visibility": 8560,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 529145.29000049829,
+                "y": 6478777.653558895
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 20,
+                "site_name": "Võiste",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.6,
+                "air_temp": 5.2,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 201,
+                "wind_speed": 1.2,
+                "air_humidity": 99,
+                "visibility": 12550,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 529440.94832399487,
+                "y": 6454399.7773933932
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 10,
+                "site_name": "Varja",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3,
+                "air_temp": 3.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 146,
+                "wind_speed": 4.2,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 674512.11572089791,
+                "y": 6589044.0172090977
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 11,
+                "site_name": "Vastseliina",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 3.9,
+                "air_temp": 5.6,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 233,
+                "wind_speed": 1,
+                "air_humidity": 98.5,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 695967.14631389827,
+                "y": 6404337.4018611982
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 12,
+                "site_name": "Jüri",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.2,
+                "air_temp": 4.1,
+                "precipitation_type": "RAIN",
+                "precipitation_intensity": 0.26,
+                "wind_dir": 103,
+                "wind_speed": 2.5,
+                "air_humidity": 98,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 550055.8592216,
+                "y": 6579958.3759652972
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 17,
+                "site_name": "Uhmardu",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 2.6,
+                "air_temp": 4.6,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 154,
+                "wind_speed": 0.7,
+                "air_humidity": 97.1,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 662048.37183509767,
+                "y": 6503420.2481889948
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 18,
+                "site_name": "Rõngu",
+                "road_status_aggregate": "OVER_2_HOURS",
+                "road_status": null,
+                "road_temp": null,
+                "air_temp": 5.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 194,
+                "wind_speed": 2.7,
+                "air_humidity": 99,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 632337.75820719451,
+                "y": 6446049.4340480939
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 36,
+                "site_name": "Atsalama",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.1,
+                "air_temp": 4.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 165,
+                "wind_speed": 2.9,
+                "air_humidity": 100,
+                "visibility": 1930,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 691166.47613659501,
+                "y": 6571285.0892324969
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 37,
+                "site_name": "Ristiküla",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.7,
+                "air_temp": 5.5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 546454.8748466,
+                "y": 6449613.1674976945
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 38,
+                "site_name": "Paldiski",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 4,
+                "air_temp": 4.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 180,
+                "wind_speed": 2,
+                "air_humidity": 99,
+                "visibility": 1120,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 505880.41651819646,
+                "y": 6578025.4221933931
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 39,
+                "site_name": "Käru",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.7,
+                "air_temp": 4.8,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 565481.29758889973,
+                "y": 6520959.6578129977
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 40,
+                "site_name": "Karisilla",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4.3,
+                "air_temp": 5.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 283,
+                "wind_speed": 2.3,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 711701.05524389446,
+                "y": 6431476.0912590995
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 41,
+                "site_name": "V-Rakke",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.6,
+                "air_temp": 5.8,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 169,
+                "wind_speed": 2.6,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 628209.08139889687,
+                "y": 6467705.2635115981
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 42,
+                "site_name": "Muhu",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 3.4,
+                "air_temp": 3.8,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 189,
+                "wind_speed": 2.1,
+                "air_humidity": 98.7,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 451497.56520369649,
+                "y": 6492614.5879663974
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 43,
+                "site_name": "Rohuküla",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 3,
+                "air_temp": 4.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 192,
+                "wind_speed": 2.3,
+                "air_humidity": 97,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 468517.68015039712,
+                "y": 6530373.6424947977
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 44,
+                "site_name": "Mõisaküla",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 4,
+                "air_temp": 5.4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 98,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 568049.5075949952,
+                "y": 6443583.2664812952
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 46,
+                "site_name": "Saru",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4.5,
+                "air_temp": 6.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 181,
+                "wind_speed": 1.7,
+                "air_humidity": 93.7,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 653326.70995319635,
+                "y": 6387950.6962955967
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 48,
+                "site_name": "Emumäe",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 2.8,
+                "air_temp": 4,
+                "precipitation_type": "RAIN",
+                "precipitation_intensity": 0.3,
+                "wind_dir": 143,
+                "wind_speed": 2.6,
+                "air_humidity": 100,
+                "visibility": 750,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 630543.13336649537,
+                "y": 6539199.6763840988
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 49,
+                "site_name": "Ikla",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 5.1,
+                "air_temp": 5.8,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 223,
+                "wind_speed": 3,
+                "air_humidity": 94,
+                "visibility": 20000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 524443.03227709979,
+                "y": 6417857.826141797
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 50,
+                "site_name": "Rae",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 3.8,
+                "air_temp": 4.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 574598.74998939782,
+                "y": 6510850.5164747983
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 51,
+                "site_name": "Tabasalu",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.9,
+                "air_temp": 4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": 1210,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 531658.39253519475,
+                "y": 6588116.9002646953
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 52,
+                "site_name": "Kõpu",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4,
+                "air_temp": 5.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 215,
+                "wind_speed": 1.1,
+                "air_humidity": 91.5,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 396359.40861859918,
+                "y": 6532161.4373065978
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 53,
+                "site_name": "Tartu",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.6,
+                "air_temp": 5.4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 98,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 659208.93917019665,
+                "y": 6474351.2829921991
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 54,
+                "site_name": "Napsi",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.3,
+                "air_temp": 5.4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 189,
+                "wind_speed": 1.7,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 575460.41427949816,
+                "y": 6460891.6638789997
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 55,
+                "site_name": "Tatra",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.5,
+                "air_temp": 5.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 189,
+                "wind_speed": 4.2,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 658351.92012829334,
+                "y": 6458865.8432276994
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 4,
+                "site_name": "Sõmeru",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 2.7,
+                "air_temp": 3.4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 272,
+                "wind_speed": 1.2,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 638427.82103979588,
+                "y": 6585331.3554990962
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 13,
+                "site_name": "Valjala",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.9,
+                "air_temp": 5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 98,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 428511.56033269316,
+                "y": 6474927.7016925961
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 3,
+                "site_name": "Märjamaa",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.3,
+                "air_temp": 4.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 184,
+                "wind_speed": 2.4,
+                "air_humidity": 93,
+                "visibility": 2000,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 526416.49812999368,
+                "y": 6531542.4201668948
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 14,
+                "site_name": "Saverna",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 4.3,
+                "air_temp": 5.5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": 1440,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 661305.28021460027,
+                "y": 6440097.7256444991
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 19,
+                "site_name": "Kernu",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4,
+                "air_temp": 4.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 176,
+                "wind_speed": 1,
+                "air_humidity": 98,
+                "visibility": 1540,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 527088.12936459482,
+                "y": 6552030.9451731965
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 79,
+                "site_name": "Viira Lufft",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 3.9,
+                "air_temp": 4.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 207,
+                "wind_speed": 1.8,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 453976.26468239725,
+                "y": 6495833.3936022967
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 15,
+                "site_name": "Jägala",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.4,
+                "air_temp": 4.2,
+                "precipitation_type": "RAIN",
+                "precipitation_intensity": 0.1,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 97,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 567639.79295499623,
+                "y": 6589143.2836162001
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 16,
+                "site_name": "Sinimäe",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 2.5,
+                "air_temp": 3.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 145,
+                "wind_speed": 3,
+                "air_humidity": 99.5,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 723779.87433529645,
+                "y": 6588460.8018668965
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 21,
+                "site_name": "Ambla",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 1.7,
+                "air_temp": 3.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 160,
+                "wind_speed": 1.8,
+                "air_humidity": 100,
+                "visibility": 1020,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 604486.15401309729,
+                "y": 6563385.2597903982
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 22,
+                "site_name": "Ainja",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 3.8,
+                "air_temp": 5.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 278,
+                "wind_speed": 2.8,
+                "air_humidity": 99.6,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 594542.36809939891,
+                "y": 6439300.605795294
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 24,
+                "site_name": "Urge",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.6,
+                "air_temp": 4.5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 150,
+                "wind_speed": 1.9,
+                "air_humidity": 100,
+                "visibility": 1380,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 544790.5838220939,
+                "y": 6562655.8874068931
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 56,
+                "site_name": "Jõhvi",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.1,
+                "air_temp": 4.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 695564.0255915001,
+                "y": 6585822.5109364986
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 57,
+                "site_name": "Aegviidu",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST_AND_CHEMICAL",
+                "road_temp": 2.9,
+                "air_temp": 4.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 164,
+                "wind_speed": 1.1,
+                "air_humidity": 98,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 592024.68961299956,
+                "y": 6574456.3379522935
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 58,
+                "site_name": "Luhamaa",
+                "road_status_aggregate": "OK",
+                "road_status": "DRY",
+                "road_temp": 4.3,
+                "air_temp": 5.2,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 701150.06742439419,
+                "y": 6393845.8185893968
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 59,
+                "site_name": "Kemba",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.2,
+                "air_temp": 4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 595801.24653849751,
+                "y": 6592967.3989961967
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 60,
+                "site_name": "Hüüru",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.7,
+                "air_temp": 4.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 160,
+                "wind_speed": 1.2,
+                "air_humidity": 100,
+                "visibility": 660,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 529347.33201839775,
+                "y": 6581104.5086130947
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 80,
+                "site_name": "Pikknurme",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.1,
+                "air_temp": 5.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 347,
+                "wind_speed": 2.1,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 631459.68752339482,
+                "y": 6496849.5257456973
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 62,
+                "site_name": "Mäo",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST_AND_CHEMICAL",
+                "road_temp": 3.6,
+                "air_temp": 4.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 150,
+                "wind_speed": 2.4,
+                "air_humidity": 100,
+                "visibility": 850,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 592680.09515699744,
+                "y": 6532625.7355092987
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 5,
+                "site_name": "Ussisoo",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 3.5,
+                "air_temp": 4.2,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 133,
+                "wind_speed": 1.1,
+                "air_humidity": 100,
+                "visibility": 710,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 586012.26836510003,
+                "y": 6544541.627402097
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 6,
+                "site_name": "Viitna",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3,
+                "air_temp": 3.7,
+                "precipitation_type": "RAIN",
+                "precipitation_intensity": 0.3,
+                "wind_dir": 151,
+                "wind_speed": 1,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 613544.55782329291,
+                "y": 6592960.5313088968
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 8,
+                "site_name": "Lihula",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4.5,
+                "air_temp": 5.2,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 210,
+                "wind_speed": 2.1,
+                "air_humidity": 97,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 489029.64441749454,
+                "y": 6505199.3833390996
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 23,
+                "site_name": "Riisipere",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 3.2,
+                "air_temp": 4.5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 198,
+                "wind_speed": 1.4,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 518496.21173919737,
+                "y": 6554795.7932699993
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 25,
+                "site_name": "Partsi",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 3.3,
+                "air_temp": 4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 191,
+                "wind_speed": 0.5,
+                "air_humidity": 95.2,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 432355.3129330948,
+                "y": 6537614.559739396
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 26,
+                "site_name": "Jaakna",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 3.8,
+                "air_temp": 4.8,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 193,
+                "wind_speed": 1.2,
+                "air_humidity": 99,
+                "visibility": 1180,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 499520.83288529515,
+                "y": 6538259.197981298
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 27,
+                "site_name": "Kassinurme",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4.3,
+                "air_temp": 4.7,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 145,
+                "wind_speed": 2.2,
+                "air_humidity": 86,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 641945.15477769822,
+                "y": 6508486.6176928952
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 28,
+                "site_name": "Padaorg",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 2.8,
+                "air_temp": 3.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 202,
+                "wind_speed": 2.1,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 653552.04234549403,
+                "y": 6591516.6423625946
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 29,
+                "site_name": "Kauksi",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 2.4,
+                "air_temp": 2.9,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 143,
+                "wind_speed": 2.8,
+                "air_humidity": 99.9,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 685419.04369089752,
+                "y": 6544608.2833545953
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 31,
+                "site_name": "Mudiste",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4,
+                "air_temp": 5.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 205,
+                "wind_speed": 0.8,
+                "air_humidity": 81.4,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 593407.9810327962,
+                "y": 6484053.9852417931
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 32,
+                "site_name": "Priipalu",
+                "road_status_aggregate": "OK",
+                "road_status": null,
+                "road_temp": 4.1,
+                "air_temp": 5.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 146,
+                "wind_speed": 1.5,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 628481.96316829324,
+                "y": 6428618.5550882965
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 33,
+                "site_name": "Ünnaste",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 4,
+                "air_temp": 5.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 191,
+                "wind_speed": 2.2,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 552636.79871209711,
+                "y": 6496474.0097599998
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 34,
+                "site_name": "Paunküla",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.5,
+                "air_temp": 4.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 575475.93911929429,
+                "y": 6556266.6999981999
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 35,
+                "site_name": "Adavere",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.9,
+                "air_temp": 4.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 162,
+                "wind_speed": 2.3,
+                "air_humidity": 100,
+                "visibility": 1430,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 610600.24361949414,
+                "y": 6507561.2658280954
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 47,
+                "site_name": "Aranküla",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.6,
+                "air_temp": 4.6,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 97,
+                "visibility": 1790,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 547950.21829869598,
+                "y": 6544746.0429705977
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 30,
+                "site_name": "Enge",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.5,
+                "air_temp": 5.2,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 203,
+                "wind_speed": 2,
+                "air_humidity": 99,
+                "visibility": 3160,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 525859.40566479415,
+                "y": 6504620.1238847002
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 1,
+                "site_name": "Kangru1",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.5,
+                "air_temp": 4.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 543698.3463921994,
+                "y": 6580406.3621592969
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 45,
+                "site_name": "Melliste",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.1,
+                "air_temp": 5.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 99,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 675532.73373779655,
+                "y": 6467243.9101685956
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 2,
+                "site_name": "KanamaX",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.4,
+                "air_temp": 4.4,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 532544.5255464986,
+                "y": 6574786.5453941002
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 63,
+                "site_name": "Loo",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.2,
+                "air_temp": 4.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 169,
+                "wind_speed": 3.1,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 554706.71931959689,
+                "y": 6590606.6755903959
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 64,
+                "site_name": "Peetrimõisa",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 4.5,
+                "air_temp": 5.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 189,
+                "wind_speed": 2.6,
+                "air_humidity": 91,
+                "visibility": 1780,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 665859.6144200936,
+                "y": 6424153.1607820988
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 65,
+                "site_name": "Vaela",
+                "road_status_aggregate": "OK",
+                "road_status": "WET_AND_CHEMICAL",
+                "road_temp": 3.3,
+                "air_temp": 4.1,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 159,
+                "wind_speed": 2.2,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 545537.66096329689,
+                "y": 6577209.3845136985
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 66,
+                "site_name": "Pärnamäe",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.3,
+                "air_temp": 4.1,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 164,
+                "wind_speed": 1.1,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 549743.53511299938,
+                "y": 6595366.5853365958
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 67,
+                "site_name": "Rohuneeme",
+                "road_status_aggregate": "OK",
+                "road_status": "WET",
+                "road_temp": 3.3,
+                "air_temp": 4.4,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": 130,
+                "wind_speed": 1.6,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 545373.04400229454,
+                "y": 6602863.4971130937
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 68,
+                "site_name": "Papiniidu",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.6,
+                "air_temp": 4.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 226,
+                "wind_speed": 3,
+                "air_humidity": 98,
+                "visibility": 18980,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 532172.63825189322,
+                "y": 6471561.5053737983
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 78,
+                "site_name": "Partsi Lufft",
+                "road_status_aggregate": "OVER_2_HOURS",
+                "road_status": null,
+                "road_temp": null,
+                "air_temp": null,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": null,
+                "visibility": null,
+                "measurement_time": 1576759800000
+            },
+            "geometry": {
+                "x": 432420.41164459288,
+                "y": 6541326.9606524929
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 69,
+                "site_name": "Ääsmäe",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 3.9,
+                "air_temp": 4.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 154,
+                "wind_speed": 2.1,
+                "air_humidity": 100,
+                "visibility": 1260,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 528061.94904839993,
+                "y": 6566829.0988701954
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 70,
+                "site_name": "Uhmardu Lufft",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4,
+                "air_temp": 5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 147,
+                "wind_speed": 0.9,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 661896.48758019507,
+                "y": 6507067.9300099984
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 71,
+                "site_name": "Rõngu Lufft",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 5,
+                "air_temp": 5.7,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 190,
+                "wind_speed": 2.3,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 632213.41810959578,
+                "y": 6449759.9279745966
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 72,
+                "site_name": "Ainja Lufft",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 4.7,
+                "air_temp": 5.4,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 198,
+                "wind_speed": 3.4,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 594453.66634639353,
+                "y": 6443012.123754099
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 73,
+                "site_name": "Lokuti Lufft",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 4.1,
+                "air_temp": 4.5,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 163,
+                "wind_speed": 1.7,
+                "air_humidity": 100,
+                "visibility": 1870,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 542227.09325689822,
+                "y": 6573426.8242620975
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 74,
+                "site_name": "Üdruma Lufft",
+                "road_status_aggregate": "OK",
+                "road_status": "MOIST",
+                "road_temp": 4.8,
+                "air_temp": 5.3,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 241,
+                "wind_speed": 0.5,
+                "air_humidity": 100,
+                "visibility": 2000,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 502567.44831419736,
+                "y": 6520314.3548674956
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 75,
+                "site_name": "Kurla Lufft",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 4.2,
+                "air_temp": 4.6,
+                "precipitation_type": "NO_PRECIPITATION",
+                "precipitation_intensity": 0,
+                "wind_dir": 163,
+                "wind_speed": 2,
+                "air_humidity": 100,
+                "visibility": 870,
+                "measurement_time": 1577002200000
+            },
+            "geometry": {
+                "x": 596375.36434329301,
+                "y": 6506873.1324772984
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 76,
+                "site_name": "Kanama2",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 4.1,
+                "air_temp": 4.4,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 529594.62109099329,
+                "y": 6573648.5242934972
+            }
+        },
+        {
+            "attributes": {
+                "objectid": 77,
+                "site_name": "Kanama3",
+                "road_status_aggregate": "COLD_WET_SURFACE",
+                "road_status": "WET",
+                "road_temp": 3.8,
+                "air_temp": 4.3,
+                "precipitation_type": null,
+                "precipitation_intensity": null,
+                "wind_dir": null,
+                "wind_speed": null,
+                "air_humidity": 100,
+                "visibility": null,
+                "measurement_time": 1577002500000
+            },
+            "geometry": {
+                "x": 531980.11612439901,
+                "y": 6572275.2021037936
+            }
+        }
+    ]
+}
