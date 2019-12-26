@@ -7,7 +7,7 @@ class SelectedStationsDataProvider with ChangeNotifier {
   SelectedStationsDataProvider(){
     initStoredIds();
   }
-  
+
   List<String> _selectedStations = [];
 
   List<String> get selectedStations => _selectedStations;
@@ -36,21 +36,14 @@ class SelectedStationsDataProvider with ChangeNotifier {
         notifyListeners();
   }
 
-  void addId(String id){
-    _selectedStations = [id];
+  void updateList(List<String> newIdList){
+    _selectedStations = newIdList;
+    _storeSelectedIds(newIdList);
     notifyListeners();
   }
 
   _storeSelectedIds(List<String> ids) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    List<String> defaultInitialList = [
-      'IT_Tallinn-Harku',
-      'TT_53_Tartu',
-      'IT_Võru',
-      'IT_Kuressaare linn',
-      'IT_Pärnu'
-    ];
 
     prefs.setStringList('selectedStations', ids);
     print("Saved selected IDs");
