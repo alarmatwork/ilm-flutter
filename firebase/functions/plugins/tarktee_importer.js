@@ -21,23 +21,31 @@ async function importTarktee() {
         .then(res => res.json())
         .then((data) => {
             data.features.forEach(incoming => {
-                var record = incoming.attributes;
-                //    console.log("Incoming data: ", record);
+                try {
 
-                var stationRecord = {
-                    id: record.objectid + "_" + record.site_name,
-                    name: record.site_name,
-                    temp: record.air_temp,
-                    tempRoad: record.road_temp,
-                    humidity: record.air_humidity,
-                    windDirection: record.wind_dir,
-                    windSpeed: record.wind_speed,
-                    updateTimestamp: new Date()
-                };
 
-                if (record.air_temp > 0) {
-                    saveStationData(stationRecord);
-                    counter++;
+                    var record = incoming.attributes;
+                    //    console.log("Incoming data: ", record);
+
+                    var stationRecord = {
+                        id: 'TT_' + record.objectid + "_" + record.site_name,
+                        name: record.site_name,
+                        temp: record.air_temp,
+                        tempRoad: record.road_temp,
+                        humidity: record.air_humidity,
+                        windDirection: record.wind_dir,
+                        windSpeed: record.wind_speed,
+                        updateTimestamp: new Date(),
+                        measuredTimeStamp: new Date(record.measurement_time),
+                        type: 'TARKTEE'
+                    };
+
+                    if (record.air_temp > 0) {
+                        saveStationData(stationRecord);
+                        counter++;
+                    }
+                } catch (error) {
+                    console.error("Tarktee error happened: ", error);
                 }
 
             });

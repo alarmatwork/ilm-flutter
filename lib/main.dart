@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:ilm/providers/selected_stations_provider.dart';
+import 'package:provider/provider.dart';
+import 'providers/selected_stations_data_provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (context) => SelectedStationsDataProvider(),
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -14,39 +20,44 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: StartPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class StartPage extends StatefulWidget {
+  StartPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _StartPageState createState() => _StartPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
+class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print("Hello from action button");
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => StationList()),
-            );
-          },
-          child: Icon(Icons.add)),
-      body: Center(child: StationCarousel()),
-    );
+    return Consumer<SelectedStationsDataProvider>(
+        builder: (context, cart, child) {
+      return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              print("Hello from action button");
+              // Provider.of<SelectedStationsDataProvider>(context)
+              //     .addId('IT_Mõntu');
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => StationList()),
+              // );
+
+              navigateAndDisplaySubFlow(context,(){
+                print("Back from selection");
+              }, StationList());
+            },
+            child: Icon(Icons.add)),
+        body: Center(child: StationCarousel()),
+      );
+    });
   }
 }
 
@@ -56,16 +67,27 @@ class StationCarousel extends StatefulWidget {
 }
 
 class _StationCarouselState extends State<StationCarousel> {
+  Stream<QuerySnapshot> _getData(List<String> selectedStations) {
+    if (selectedStations == null || selectedStations.isEmpty) {
+      return Stream.empty();
+    }
+    return Firestore.instance
+        .collection('stations')
+        .where('id', whereIn: selectedStations)
+        .snapshots();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    var selectedStations =
+        Provider.of<SelectedStationsDataProvider>(context).selectedStations;
     return new Scaffold(
-      // appBar: new AppBar(
-      //   title: new Text(widget.title),
-      // ),
-      body: RefreshIndicator(
-        onRefresh: _refreshStockPrices,
-        child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance.collection('stations').snapshots(),
+        // appBar: new AppBar(
+        //   title: new Text(widget.title),
+        // ),
+        body: StreamBuilder<QuerySnapshot>(
+            stream: _getData(selectedStations),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError)
@@ -74,7 +96,8 @@ class _StationCarouselState extends State<StationCarousel> {
                 case ConnectionState.waiting:
                   return new Text('Loading...');
                 default:
-                  List data = getFilteredStationsInOrder(snapshot.data.documents);
+                  List data = getOrderedBySelectedIdsOrder(
+                      snapshot.data?.documents, selectedStations);
                   return new Swiper(
                     itemBuilder: (BuildContext context, int index) {
                       return new StationScreen(stationData: data[index]);
@@ -83,28 +106,21 @@ class _StationCarouselState extends State<StationCarousel> {
                     //pagination: new SwiperPagination(),
                     control: new SwiperControl(),
                     scale: 0.5,
-                    outer: true,                    
+                    outer: true,
                   );
               }
-            }),
-      ),
-    );
-  }
-
- List getFilteredStationsInOrder(List<DocumentSnapshot> documents) async {
-    List<String> selectedStations = await getSelectedStationsIds();
-    List result = [];
-
-    result = documents
-        .where(
-            (document) => selectedStations.contains(document['id'].toString()))
-        .toList();
-
-    print('Done sorting: $result');
-    return result;
+            }));
   }
 }
 
+List getOrderedBySelectedIdsOrder(
+    List<DocumentSnapshot> documents, List<String> selectedIds) {
+  List result =
+      List.from(selectedIds.map((id) => documents.firstWhere((document) {
+            return document.documentID == id;
+          })));
+  return result;
+}
 
 Future<void> _refreshStockPrices() {
   print("Refresh called");
@@ -125,19 +141,18 @@ class StationList extends StatelessWidget {
             return new ListView(
               children:
                   snapshot.data.documents.map((DocumentSnapshot document) {
+                return CheckboxListTile(
+                  title: Text(document['name'] ?? ''),
+                  value: false,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (bool value) {
+                    // setState(() {
+                    //   //Store local value
 
-                    return CheckboxListTile(
-    title: Text(document['name'] ?? ''),
-    value: false,
-    controlAffinity: ListTileControlAffinity.leading,
-    onChanged: (bool value) {
-      // setState(() { 
-      //   //Store local value
-
-      // });
-    },
-    secondary: const Icon(Icons.directions_car),
-  );
+                    // });
+                  },
+                  secondary: const Icon(Icons.directions_car),
+                );
                 // return new ListTile(
                 //   title: new Text(document['name'] ?? ''),
                 //   subtitle: new Text(document['temp'].toString() ?? ''),
@@ -223,9 +238,9 @@ class StationScreen extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 20.0, left: 10),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               StationDataPoint(
                                   value: stationData['windSpeed'],
@@ -271,34 +286,52 @@ class StationDataPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (value != null) {
-      return Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(value.toString(),
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrangeAccent,
-                    fontSize: 16,
-                  )),
-              Text(unit,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  )),
-            ],
-          ),
-          Text(label.toUpperCase(),
-              style: TextStyle(
-                color: Color(0xFFB5E1F9),
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              )),
-        ],
+      return Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Text(value.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrangeAccent,
+                      fontSize: 16,
+                    )),
+                Text(unit,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    )),
+              ],
+            ),
+            Text(label.toUpperCase(),
+                style: TextStyle(
+                  color: Color(0xFFB5E1F9),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                )),
+          ],
+        ),
       );
     } else {
       return SizedBox.shrink();
     }
   }
+}
+
+
+Future<void> navigateAndDisplaySubFlow(
+    BuildContext context, Function onResult, Widget screen) async {
+  // Navigator.push returns a Future that completes after calling
+  // Navigator.pop on the Selection Screen.
+  final result = await Navigator.push(
+    context,
+    // Create the SelectionScreen in the next step.
+    MaterialPageRoute(builder: (context) => screen),
+  );
+
+  onResult(result);
+  return;
 }

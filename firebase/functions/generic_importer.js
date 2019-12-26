@@ -1,7 +1,7 @@
 function saveStationData(record) {
     const admin = require('firebase-admin');
     let db = admin.firestore();
-    console.log("Updating station record: " + JSON.stringify(record));
+  //  console.log("Updating station record: " + JSON.stringify(record));
     let stationRef = db.collection('stations').doc(record.id);
     let resultRef = stationRef.set(record, { merge: true });
 }
