@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>226870984230-5l2itjosp597h91818ac9tmaeaqvpam2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.226870984230-5l2itjosp597h91818ac9tmaeaqvpam2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB2A8Wh_D3yUWA-NIDb5pDPNi6yixO-Qoo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>226870984230</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tegume.ilm</string>
+	<key>PROJECT_ID</key>
+	<string>ilmajaam-95459</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ilmajaam-95459.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:226870984230:ios:2b6a4953ec1a28925370e7</string>
+	<key>DATABASE_URL</key>
+	<string>https://ilmajaam-95459.firebaseio.com</string>
+</dict>
+</plist>

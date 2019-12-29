@@ -9,31 +9,32 @@ class StationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double circleSize = (MediaQuery.of(context).size.width / 2).roundToDouble();
     return Center(
       child: Column(
         children: <Widget>[
           Center(
             // top: 150,
-            // right: MediaQuery.of(context).size.width / 4,
+            // right: MediaQuery.of(context).size.width / 2,
             child: Container(
               margin: EdgeInsets.only(top: 50),
-              width: 200,
-              height: 200,
+              width: circleSize,
+              height: circleSize,
               decoration: BoxDecoration(
                 color: Color(0xFFB5E1F9),
                 borderRadius: BorderRadius.all(
-                  Radius.circular(200),
+                  Radius.circular(circleSize),
                 ),
               ),
               child: Center(
                 child: Stack(children: [
                   Container(
-                    width: 150,
-                    height: 150,
+                    width: circleSize - 50,
+                    height: circleSize - 50,
                     decoration: BoxDecoration(
                       color: Color(0xFF4FB6F0),
                       borderRadius: BorderRadius.all(
-                        Radius.circular(150),
+                        Radius.circular(circleSize - 50),
                       ),
                     ),
                     child: Column(
@@ -73,24 +74,46 @@ class StationScreen extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, left: 10),
+                          padding: const EdgeInsets.only(top: 20.0, left: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              StationDataPoint(
-                                  value: stationData['windSpeed'],
-                                  unit: 'm/s',
-                                  label: 'Tuul'),
-                              StationDataPoint(
-                                value: stationData['windDirection'],
-                                unit: 'º',
-                                label: 'Tuulesuund',
-                              ),
-                              StationDataPoint(
-                                value: stationData['humidity'],
-                                unit: '%',
-                                label: 'Õhuniiskus',
-                              ),
+                              Wrap(
+                                  runSpacing: 5.0,
+                                  spacing: 5.0,
+                                  children: <Widget>[
+                                    StationDataPoint(
+                                        value: stationData['windSpeed'],
+                                        unit: 'm/s',
+                                        label: 'Tuul'),
+                                    StationDataPoint(
+                                      value: stationData['windDirection'],
+                                      unit: 'º',
+                                      label: 'Tuulesuund',
+                                    ),
+                                    StationDataPoint(
+                                      value: stationData['humidity'],
+                                      unit: '%',
+                                      label: 'Õhuniiskus',
+                                    ),
+                                    StationDataPoint(
+                                      value: stationData['tempRoad'],
+                                      unit: 'ºC',
+                                      label: 'Teetemp.',
+                                    ),
+                                    StationDataPoint(
+                                      value: stationData['visibility'] != null
+                                          ? stationData['visibility'] / 10000
+                                          : null,
+                                      unit: 'km',
+                                      label: 'Nähtavus',
+                                    ),
+                                    StationDataPoint(
+                                      value: stationData['roadStatus'],
+                                      unit: '',
+                                      label: 'TEE SEIS',
+                                    )
+                                  ]),
                             ],
                           ),
                         ),
@@ -107,7 +130,6 @@ class StationScreen extends StatelessWidget {
   }
 }
 
-
 class StationDataPoint extends StatelessWidget {
   final dynamic value;
   final String unit;
@@ -122,34 +144,31 @@ class StationDataPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (value != null) {
-      return Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(value.toString(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
-                      fontSize: 16,
-                    )),
-                Text(unit,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    )),
-              ],
-            ),
-            Text(label.toUpperCase(),
-                style: TextStyle(
-                  color: Color(0xFFB5E1F9),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                )),
-          ],
-        ),
+      return Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(value.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepOrangeAccent,
+                    fontSize: 16,
+                  )),
+              Text(unit,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  )),
+            ],
+          ),
+          Text(label.toUpperCase(),
+              style: TextStyle(
+                color: Color(0xFFB5E1F9),
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              )),
+        ],
       );
     } else {
       return SizedBox.shrink();

@@ -25,7 +25,7 @@ async function importTarktee() {
 
 
                     var record = incoming.attributes;
-                    //    console.log("Incoming data: ", record);
+                      // console.log("Incoming data: ", record);
 
                     var stationRecord = {
                         id: 'TT_' + record.objectid + "_" + record.site_name,
@@ -35,12 +35,14 @@ async function importTarktee() {
                         humidity: record.air_humidity,
                         windDirection: record.wind_dir,
                         windSpeed: record.wind_speed,
+                        visibility: record.visibility,
+                        roadStatus: record.road_status,
                         updateTimestamp: new Date(),
                         measuredTimeStamp: new Date(record.measurement_time),
                         type: 'TARKTEE'
                     };
 
-                    if (record.air_temp > 0) {
+                    if (record.air_temp) {
                         saveStationData(stationRecord);
                         counter++;
                     }

@@ -1,10 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SelectedStationsDataProvider with ChangeNotifier {
-
-
-  SelectedStationsDataProvider(){
+  SelectedStationsDataProvider() {
     initStoredIds();
   }
 
@@ -33,10 +32,20 @@ class SelectedStationsDataProvider with ChangeNotifier {
 
     print(
         "Loaded stored ID-s from preferences: " + _selectedStations.toString());
-        notifyListeners();
+    notifyListeners();
   }
 
-  void updateList(List<String> newIdList){
+  Future<List<DocumentSnapshot>> getAllStations() async {
+    QuerySnapshot querySnapshot =
+        await Firestore.instance.collection("stations").getDocuments();
+    return querySnapshot.documents;
+  }
+
+  void updateList(List<String> newIdList) {
+    if (newIdList.length >= 9) {
+      throw Exception("Liiga palju ilmajaamasid valitud (max 10)");
+    }
+
     _selectedStations = newIdList;
     _storeSelectedIds(newIdList);
     notifyListeners();
@@ -47,5 +56,28 @@ class SelectedStationsDataProvider with ChangeNotifier {
 
     prefs.setStringList('selectedStations', ids);
     print("Saved selected IDs");
+  }
+
+  void addSelectedId(String id) {
+    if (_selectedStations.contains(id)) {
+      throw Exception("Ilmajaam juba valitud");
+    }
+
+    if (_selectedStations.length > 9) {
+      throw Exception("Maksimaalselt on lubatud 10 ilmajaama");
+    }
+
+    selectedStations.add(id);
+    _storeSelectedIds(selectedStations);
+    notifyListeners();
+  }
+
+  void removeSelectedId(String id) {
+    if (!_selectedStations.contains(id)) {
+      throw Exception("See ilmajaam ei olnud valitud");
+    }
+    selectedStations.remove(id);
+    _storeSelectedIds(selectedStations);
+    notifyListeners();
   }
 }

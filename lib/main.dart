@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'providers/selected_stations_data_provider.dart';
 import 'station_list_screen.dart';
 import 'station_screen.dart';
+import 'stations_management_screen.dart';
 
 void main() => runApp(
       ChangeNotifierProvider(
@@ -17,6 +19,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Colors.white, //or set color with: Color(0xFF0000FF)
+    ));
+
     return MaterialApp(
       title: 'Ilm 2.0 - Ilmajaam sinu taskus',
       theme: ThemeData(
@@ -42,12 +48,13 @@ class _StartPageState extends State<StartPage> {
     return Consumer<SelectedStationsDataProvider>(
         builder: (context, cart, child) {
       return Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               print("Hello from action button");
-              navigateAndDisplaySubFlow(context,(_){
+              navigateAndDisplaySubFlow(context, (_) {
                 print("Back from selection");
-              }, StationList());
+              }, StationsManagementScreen());
             },
             child: Icon(Icons.add)),
         body: Center(child: StationCarousel()),
@@ -66,18 +73,21 @@ class _StationCarouselState extends State<StationCarousel> {
     if (selectedStations == null || selectedStations.isEmpty) {
       return Stream.empty();
     }
+
+    print("Currently selected: "+selectedStations.length.toString());
+  
     return Firestore.instance
         .collection('stations')
         .where('id', whereIn: selectedStations)
         .snapshots();
   }
 
-
   @override
   Widget build(BuildContext context) {
     var selectedStations =
         Provider.of<SelectedStationsDataProvider>(context).selectedStations;
     return new Scaffold(
+        backgroundColor: Colors.white,
         // appBar: new AppBar(
         //   title: new Text(widget.title),
         // ),
@@ -100,7 +110,7 @@ class _StationCarouselState extends State<StationCarousel> {
                     itemCount: data.length,
                     //pagination: new SwiperPagination(),
                     control: new SwiperControl(),
-                    scale: 0.5,
+                    scale: 0.9,
                     outer: true,
                   );
               }

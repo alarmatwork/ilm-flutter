@@ -23,17 +23,24 @@ async function importIlmateenistus() {
 
 
     let result = await fetch(url, settings)
-        .then(res => res.text())
+        .then((response) => {
+            if (response.ok) {
+                return response.text();
+            } else {
+
+                throw 'There is something wrong: ' + result.error;
+            }
+
+        })
         .then((body) => {
-
-            console.log("Got Ilmateenistus.ee content");
-
             const cheerio = require('cheerio');
             const $ = cheerio.load(body)
             const rawDate = $('.utc-info').text().trim();
             const measuredTimeStampValue = getDate(rawDate);
             // Find all rows in data table        
             $('.ajx-container').find('tr').each(function (i, elem) {
+
+              //  console.log("Got Ilmateenistus.ee content");
 
                 if (i > 0) {
                     try {
@@ -54,12 +61,14 @@ async function importIlmateenistus() {
                             type: 'ILMATEENISTUS'
                         };
 
-                        if (stationRecord.temp > 0) {
+                        if (stationRecord.temp) {
                             saveStationData(stationRecord);
                             counter++;
+                        } else {
+                            console.warn("Not saving...", stationRecord);
                         }
                     } catch (error) {
-                        console.error("TarkTee error happened:", error);
+                        console.error("Ilmateenistus error happened:", error);
                     }
                 }
             });
@@ -67,7 +76,7 @@ async function importIlmateenistus() {
             return counter;
         });
 
-    console.log('END importIlmateenistus updated:', counter);
+    console.log('END importIlmateenistus updated:', counter, " result:" + result);
     return counter;
 }
 
@@ -101,7 +110,7 @@ function getDate(rawDate) {
     console.log("Formatted: '" + formatted + "'");
 
     let parsedDate = Date.parse(formatted);
-   // console.log('Parsed: ', parsedDate);
+    // console.log('Parsed: ', parsedDate);
     return new Date(parsedDate);
 
 
