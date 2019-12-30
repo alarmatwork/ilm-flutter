@@ -108,11 +108,11 @@ class StationScreen extends StatelessWidget {
                                       unit: 'km',
                                       label: 'Nähtavus',
                                     ),
-                                    StationDataPoint(
-                                      value: stationData['roadStatus'],
-                                      unit: '',
-                                      label: 'TEE SEIS',
-                                    )
+                                    // StationDataPoint(
+                                    //   value: stationData['roadStatus'],
+                                    //   unit: '',
+                                    //   label: 'TEE SEIS',
+                                    // )
                                   ]),
                             ],
                           ),
