@@ -91,6 +91,7 @@ class _StationCarouselState extends State<StationCarousel> {
         // appBar: new AppBar(
         //   title: new Text(widget.title),
         // ),
+        
         body: StreamBuilder<QuerySnapshot>(
             stream: _getData(selectedStations),
             builder:
