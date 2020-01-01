@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ilm/widgets/station_data_widget.dart';
 import 'package:provider/provider.dart';
 import 'providers/selected_stations_data_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-
 void main() => runApp(new MaterialApp(
       home: new StationsManagementScreen(),
     ));
@@ -18,9 +17,11 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
   TextEditingController controller = new TextEditingController();
   String filter;
   List allStations = [];
+ 
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
     if (items == null || items.isEmpty) {
       if (items == null) {
         items = [];
@@ -153,12 +154,14 @@ class StationCard extends StatelessWidget {
                   size: 20,
                 ),
                 title: new Text(station['name'].toString()),
-                subtitle: Text(station['measuredTimeStamp'] != null
-                    ? new DateFormat.d().add_M().add_y().add_Hm().format(
-                        DateTime.fromMillisecondsSinceEpoch(
-                            station['measuredTimeStamp']
-                                .millisecondsSinceEpoch))
-                    : ''),
+                subtitle:
+                StationParams(stationData: station),
+                //  Text(station['measuredTimeStamp'] != null
+                //     ? new DateFormat.d().add_M().add_y().add_Hm().format(
+                //         DateTime.fromMillisecondsSinceEpoch(
+                //             station['measuredTimeStamp']
+                //                 .millisecondsSinceEpoch))
+                //     : ''),
                 trailing: ClipOval(
                   child: Container(
                     height: 30,

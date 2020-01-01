@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'providers/selected_stations_data_provider.dart';
-import 'station_list_screen.dart';
 import 'station_screen.dart';
 import 'stations_management_screen.dart';
 
@@ -74,8 +73,8 @@ class _StationCarouselState extends State<StationCarousel> {
       return Stream.empty();
     }
 
-    print("Currently selected: "+selectedStations.length.toString());
-  
+    print("Currently selected: " + selectedStations.length.toString());
+
     return Firestore.instance
         .collection('stations')
         .where('id', whereIn: selectedStations)
@@ -91,7 +90,7 @@ class _StationCarouselState extends State<StationCarousel> {
         // appBar: new AppBar(
         //   title: new Text(widget.title),
         // ),
-        
+
         body: StreamBuilder<QuerySnapshot>(
             stream: _getData(selectedStations),
             builder:
@@ -126,10 +125,6 @@ List getOrderedBySelectedIdsOrder(
             return document.documentID == id;
           })));
   return result;
-}
-
-Future<void> _refreshStockPrices() {
-  print("Refresh called");
 }
 
 Future<void> navigateAndDisplaySubFlow(
