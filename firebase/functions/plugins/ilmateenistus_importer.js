@@ -40,7 +40,7 @@ async function importIlmateenistus() {
             // Find all rows in data table        
             $('.ajx-container').find('tr').each(function (i, elem) {
 
-              //  console.log("Got Ilmateenistus.ee content");
+                //  console.log("Got Ilmateenistus.ee content");
 
                 if (i > 0) {
                     try {
@@ -49,13 +49,14 @@ async function importIlmateenistus() {
                         var stationRecord = {
                             id: "IT_" + dataColumns[1].trim(),
                             name: dataColumns[1].trim(),
-                            temp: parseNumber(dataColumns[2]),      //Temperatiure field, might be empty in some cases
-                            humidity: parseNumber(dataColumns[3]),
-                            windDirection: parseNumber(dataColumns[6]),
-                            windSpeed: parseNumber(dataColumns[7]),
-                            windSpeedMax: parseNumber(dataColumns[8]),
-                            airPressure: parseNumber(dataColumns[4]),
-                            visibility: parseNumber(dataColumns[13]),
+                            temp: parseNumber(dataColumns[2], 1),      //Temperatiure field, might be empty in some cases
+                            humidity: parseNumber(dataColumns[3], 1),
+                            windDirection: parseNumber(dataColumns[6], 1),
+                            windSpeed: parseNumber(dataColumns[7], 1),
+                            windSpeedMax: parseNumber(dataColumns[8], 1),
+                            airPressure: parseNumber(dataColumns[4], 1),
+                            visibility: parseNumber(dataColumns[13], 1000),
+                            precipitationIntensity: parseNumber(dataColumns[12], 1),
                             updateTimestamp: new Date(),
                             measuredTimeStamp: measuredTimeStampValue,
                             type: 'ILMATEENISTUS'
@@ -81,7 +82,10 @@ async function importIlmateenistus() {
 }
 
 
-function parseNumber(input) {
+function parseNumber(input, multiplier) {
+    if (!multiplier) {
+        multiplier = 1;
+    }
     //console.log("IN:", input);
     if (!input) {
         return input;
@@ -91,7 +95,7 @@ function parseNumber(input) {
     if (trimmerInput === "") {
         return null;
     }
-    return parseFloat(trimmerInput);
+    return parseFloat(trimmerInput) * multiplier;
 
 }
 

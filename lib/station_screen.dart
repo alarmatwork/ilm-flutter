@@ -11,7 +11,10 @@ class StationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double circleSize =
-        (MediaQuery.of(context).size.width / 2) + 50.roundToDouble();
+        (MediaQuery.of(context).size.height / 3) + 50.roundToDouble();
+    double fontSize = (circleSize / 5).roundToDouble();
+    double circleBorderSize = fontSize;
+    print("Tsirkel: $circleSize font: $fontSize");
     return Center(
       child: Column(
         children: <Widget>[
@@ -22,7 +25,7 @@ class StationScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,
-                fontSize: 32,
+                fontSize: 34,
               ),
             ),
           ),
@@ -30,7 +33,7 @@ class StationScreen extends StatelessWidget {
             // top: 150,
             // right: MediaQuery.of(context).size.width / 2,
             child: Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: EdgeInsets.only(top: 10),
               width: circleSize,
               height: circleSize,
               decoration: BoxDecoration(
@@ -42,12 +45,12 @@ class StationScreen extends StatelessWidget {
               child: Center(
                 child: Stack(children: [
                   Container(
-                    width: circleSize - 50,
-                    height: circleSize - 50,
+                    width: circleSize - circleBorderSize,
+                    height: circleSize - circleBorderSize,
                     decoration: BoxDecoration(
                       color: Color(0xFF4FB6F0),
                       borderRadius: BorderRadius.all(
-                        Radius.circular(circleSize - 50),
+                        Radius.circular(circleSize - circleBorderSize),
                       ),
                     ),
                     child: Column(
@@ -57,10 +60,9 @@ class StationScreen extends StatelessWidget {
                         Text(
                           '${stationData['temp'] ?? ''}ºC',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                          ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: fontSize),
                         ),
                       ],
                     ),
@@ -69,22 +71,9 @@ class StationScreen extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        StationParams(stationData: stationData),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: StationDataCell(stationData: stationData),
           ),
         ],
       ),

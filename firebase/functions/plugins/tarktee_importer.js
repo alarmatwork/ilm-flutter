@@ -37,6 +37,7 @@ async function importTarktee() {
                         windSpeed: record.wind_speed,
                         visibility: record.visibility,
                         roadStatus: record.road_status,
+                        precipitationIntensity: record.precipitation_intensity,
                         updateTimestamp: new Date(),
                         measuredTimeStamp: new Date(record.measurement_time),
                         type: 'TARKTEE'

@@ -49,6 +49,7 @@ class _StartPageState extends State<StartPage> {
       return Scaffold(
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
+          backgroundColor:  Color(0xFF4FB6F0),
             onPressed: () {
               print("Hello from action button");
               navigateAndDisplaySubFlow(context, (_) {
@@ -109,9 +110,9 @@ class _StationCarouselState extends State<StationCarousel> {
                     },
                     itemCount: data.length,
                     //pagination: new SwiperPagination(),
-                    control: new SwiperControl(),
+                    control: new SwiperControl(color: Colors.black12),
                     scale: 0.9,
-                    outer: true,
+                    //outer: true,
                   );
               }
             }));
