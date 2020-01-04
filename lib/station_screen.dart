@@ -20,17 +20,7 @@ class StationScreen extends StatelessWidget {
     return Center(
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Text(
-              (stationData['name'] ?? '').toUpperCase(),
-              style: TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
-                fontSize: 34,
-              ),
-            ),
-          ),
+          StationNameWidget(stationData: stationData),
           CicularInfo(
               circleSize: circleSize,
               circleBorderSize: circleBorderSize,
@@ -38,9 +28,33 @@ class StationScreen extends StatelessWidget {
               fontSize: fontSize),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: StationDataCell(stationData: stationData),
+            child: StationDataCells(stationData: stationData),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class StationNameWidget extends StatelessWidget {
+  const StationNameWidget({
+    Key key,
+    @required this.stationData,
+  }) : super(key: key);
+
+  final dynamic stationData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Text(
+        (stationData['name'] ?? '').toUpperCase(),
+        style: TextStyle(
+          color: Colors.grey,
+          fontWeight: FontWeight.bold,
+          fontSize: 34,
+        ),
       ),
     );
   }

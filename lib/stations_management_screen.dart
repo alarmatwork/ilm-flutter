@@ -185,7 +185,7 @@ class StationCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                subtitle: StationDataCell(stationData: station, showTemperature: true),
+                subtitle: StationDataCells(stationData: station, showTemperature: true),
                 //  Text(station['measuredTimeStamp'] != null
                 //     ? new DateFormat.d().add_M().add_y().add_Hm().format(
                 //         DateTime.fromMillisecondsSinceEpoch(

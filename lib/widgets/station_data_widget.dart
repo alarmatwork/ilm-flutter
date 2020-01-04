@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 
 final df = DateFormat('H:mm');
 
-class StationDataCell extends StatelessWidget {
+class StationDataCells extends StatelessWidget {
   final bool showTemperature;
 
-  const StationDataCell(
+  const StationDataCells(
       {Key key, @required this.stationData, this.showTemperature: false})
       : super(key: key);
 
