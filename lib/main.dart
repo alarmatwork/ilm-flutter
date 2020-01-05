@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-import 'providers/selected_stations_data_provider.dart';
+import 'providers/stations_data_provider.dart';
 import 'station_screen.dart';
 import 'stations_management_screen.dart';
 

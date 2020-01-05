@@ -100,9 +100,19 @@ class StationsDataProvider with ChangeNotifier {
   }
 
   void _locationListener(LocationData event) {
+    final Distance distance = new Distance();
+
+    double dist = _currentLocation == null || event == null
+        ? null
+        : distance.as(
+            LengthUnit.Kilometer,
+            new LatLng(_currentLocation.latitude, _currentLocation.longitude),
+            new LatLng(event.latitude, event.longitude));
+
     if (_currentLocation == null ||
         (event.latitude != _currentLocation.latitude &&
-            event.longitude != _currentLocation.longitude)) {
+                event.longitude != _currentLocation.longitude) &&
+            (dist != null && dist > 1)) {
       _currentLocation = event;
       print("EVENT: LAT:${event.latitude} LNG:${event.longitude}");
       notifyListeners();

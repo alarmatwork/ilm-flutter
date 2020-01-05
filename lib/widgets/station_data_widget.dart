@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:ilm/providers/selected_stations_data_provider.dart';
+import 'package:ilm/providers/stations_data_provider.dart';
 
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

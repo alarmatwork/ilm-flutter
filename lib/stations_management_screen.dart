@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ilm/widgets/station_data_widget.dart';
 import 'package:provider/provider.dart';
-import 'providers/selected_stations_data_provider.dart';
+import 'providers/stations_data_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(new MaterialApp(
@@ -108,7 +108,6 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
                     'Nime järgi',
                     style: new TextStyle(fontSize: 16.0),
                   ),
-                  
                 ]),
           ),
           // new TextField(
@@ -170,7 +169,9 @@ class StationCards extends StatelessWidget {
                 ? -1
                 : 1;
           }
-        } else {
+        }
+
+        if (compareResult == 0) {
           compareResult = a['name'].compareTo(b['name']);
         }
       }
