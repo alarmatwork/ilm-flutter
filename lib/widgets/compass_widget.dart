@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
@@ -14,19 +15,43 @@ class Compass extends StatefulWidget {
 class _CompassState extends State<Compass> {
   double _heading = 0;
 
+  StreamSubscription<double> _subscription;
+
   String get _readout => ''; //_heading.toStringAsFixed(0) + '°';
 
   @override
   void initState() {
     super.initState();
-    FlutterCompass.events.listen(_onData);
+    print("COMPASS init was called");
+    if (_subscription != null) {
+      print("COMPASS-RESUME");
+      _subscription.resume();
+    } else {
+      _subscription = FlutterCompass.events.listen(_onData);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("COMPASS dispose was called");
+    _subscription.pause();
+    print("COMPASS-PAUSE");
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+    print("COMPASS didChangeDependencies was called");
   }
 
   void _onData(double x) {
     int windDirection = widget.stationData['windDirection'];
     if (mounted && windDirection != null) {
       setState(() {
-        _heading = (x +  windDirection) % 360;
+        _heading = (x + windDirection) % 360;
         print(
             "compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
       });
@@ -55,8 +80,8 @@ class CompassPainter extends CustomPainter {
   CompassPainter({@required this.angle}) : super();
 
   final double angle;
-  double get rotation => (-1 *(angle) * pi)/180 ;
-  
+  double get rotation => (-1 * (angle) * pi) / 180;
+
   Paint get _brush => new Paint()
     ..style = PaintingStyle.stroke
     ..strokeWidth = 2.0;
@@ -68,7 +93,6 @@ class CompassPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    
     Paint circle = _brush..color = Colors.indigo[400].withOpacity(0.6);
 
     Paint needle = _brush..color = Colors.red[400];

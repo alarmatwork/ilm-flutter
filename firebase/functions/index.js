@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
+const { saveStationData } = require('./generic_importer');
 
 admin.initializeApp();
 
@@ -14,6 +15,51 @@ exports.triggerUpdate = functions.https.onRequest(async (request, response) => {
 
     console.log("All imports DONE");
     response.json({ tarkteeResult: tarkteeResult, ilmateenistusResult: ilmateenistusResult });
+});
+
+exports.loadTartkteeLocationsFromXML = functions.https.onRequest(async (request, response) => {
+    const tarkteeLocationParser = require("./plugins/tarktee_location_parser");
+    const fs = require('fs');
+    let xmlString = fs.readFileSync("data/tarktee_locations.xml", "utf8");
+
+    let json = tarkteeLocationParser.parseXml(xmlString);
+    let locationData = json.d2LogicalModel.payloadPublication.measurementSiteTable
+
+    console.log("Parsing DONE");
+    //Weather Station Info
+    let result = {}
+    locationData[1].measurementSiteRecord.forEach((record) => {
+        result[record.measurementSiteName.values.value.trim()] = record.measurementSiteLocation.pointByCoordinates.pointCoordinates;
+    });
+
+   // console.log(result);
+
+    let db = admin.firestore();
+    let stationsRef = db.collection('stations');
+    let allStations = stationsRef.get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+
+                const data = doc.data();
+                let locatonData = result[data['name'].trim()];
+                console.log("'", data['name'], "' looking ", locatonData);
+                if (locatonData && doc.id.startsWith("TT")) {
+                    let stationRecord = {
+                        id: doc.id,
+                        location: new admin.firestore.GeoPoint(locatonData.latitude, locatonData.longitude)
+                    };
+                    console.log('Updating: ', stationRecord);
+                    saveStationData(stationRecord);
+                }
+
+            });
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+
+    response.json(result);
+
 });
 
 exports.data = functions.https.onRequest((request, response) => {
@@ -50,7 +96,7 @@ exports.scheduledIlmateenistusUpdate = functions.pubsub.schedule('10 */1 * * *')
     const pluginIlmateenistus = require("./plugins/ilmateenistus_importer");
     let ilmateenistusPromise = pluginIlmateenistus.importIlmateenistus().catch(error => { console.log('caught', err.message); });
 
-    console.log('Update Scheduler finished ilmateenistusResult: ',ilmateenistusPromise);
+    console.log('Update Scheduler finished ilmateenistusResult: ', ilmateenistusPromise);
 
     return ilmateenistusPromise;
 });

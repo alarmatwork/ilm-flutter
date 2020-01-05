@@ -8,8 +8,9 @@ class StationsDataProvider with ChangeNotifier {
   StationsDataProvider() {
     initStoredIds();
     var location = new Location();
-
-    location.onLocationChanged().listen(_locationListener);
+    if (location.onLocationChanged() != null){
+      location.onLocationChanged().listen(_locationListener);
+    }
   }
 
   List<String> _selectedStations = [];
