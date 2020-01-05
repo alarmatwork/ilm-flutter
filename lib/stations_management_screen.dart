@@ -18,7 +18,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
   TextEditingController controller = new TextEditingController();
   String filter;
   List allStations = [];
-  bool sortByName = true;
+  bool sortByName = false;
   bool group = true;
 
   @override
@@ -85,18 +85,6 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
                     ),
                   ),
                   new Radio(
-                      value: sortByName,
-                      groupValue: group,
-                      onChanged: (value) {
-                        setState(() {
-                          sortByName = true;
-                        });
-                      }),
-                  new Text(
-                    'Nime',
-                    style: new TextStyle(fontSize: 16.0),
-                  ),
-                  new Radio(
                       value: !sortByName,
                       groupValue: group,
                       onChanged: (value) {
@@ -108,6 +96,19 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
                     'Kauguse',
                     style: new TextStyle(fontSize: 16.0),
                   ),
+                  new Radio(
+                      value: sortByName,
+                      groupValue: group,
+                      onChanged: (value) {
+                        setState(() {
+                          sortByName = true;
+                        });
+                      }),
+                  new Text(
+                    'Nime järgi',
+                    style: new TextStyle(fontSize: 16.0),
+                  ),
+                  
                 ]),
           ),
           // new TextField(
@@ -240,7 +241,7 @@ class StationCard extends StatelessWidget {
                               fontSize: 20,
                               color: Colors.black54)),
                       Text(distance != null
-                          ? ' [' + distance.toString() + 'km]'
+                          ? ' (' + distance.toString() + 'km)'
                           : ''),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
