@@ -18,6 +18,8 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
   TextEditingController controller = new TextEditingController();
   String filter;
   List allStations = [];
+  bool sortByName = true;
+  bool group = true;
 
   @override
   void initState() {
@@ -37,7 +39,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
         items = [];
       }
 
-      Provider.of<SelectedStationsDataProvider>(context, listen: false)
+      Provider.of<StationsDataProvider>(context, listen: false)
           .getAllStations()
           .then((List<DocumentSnapshot> resultList) {
         print("Got results: " + resultList.length.toString());
@@ -65,13 +67,48 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
             ),
             backgroundColor: Colors.white,
             title: new TextField(
-              decoration:
-                  new InputDecoration(hintText: "Otsimiseks trüki nimi siia"),
+              decoration: new InputDecoration(
+                  hintText: "Otsimiseks trüki ilmajaama nimi siia"),
               controller: controller,
             )),
         body: new Column(children: <Widget>[
           new Padding(
             padding: new EdgeInsets.only(top: 20.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Sorteeri :',
+                    style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  new Radio(
+                      value: sortByName,
+                      groupValue: group,
+                      onChanged: (value) {
+                        setState(() {
+                          sortByName = true;
+                        });
+                      }),
+                  new Text(
+                    'Nime',
+                    style: new TextStyle(fontSize: 16.0),
+                  ),
+                  new Radio(
+                      value: !sortByName,
+                      groupValue: group,
+                      onChanged: (value) {
+                        setState(() {
+                          sortByName = false;
+                        });
+                      }),
+                  new Text(
+                    'Kauguse',
+                    style: new TextStyle(fontSize: 16.0),
+                  ),
+                ]),
           ),
           // new TextField(
           //   decoration:
@@ -79,28 +116,35 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
           //   controller: controller,
           // ),
           new Expanded(
-            child: StationCards(items: items, filter: filter),
+            child: StationCards(
+              allStations: items,
+              filter: filter,
+              sortByDistance: !sortByName,
+            ),
           ),
         ]));
   }
 }
 
 class StationCards extends StatelessWidget {
-  const StationCards({
-    Key key,
-    @required this.items,
-    @required this.filter,
-  }) : super(key: key);
+  final bool sortByDistance;
 
-  final List<dynamic> items;
+  const StationCards(
+      {Key key,
+      @required this.allStations,
+      @required this.filter,
+      this.sortByDistance: true})
+      : super(key: key);
+
+  final List<dynamic> allStations;
   final String filter;
 
   @override
   Widget build(BuildContext context) {
     List<String> selectedStations =
-        Provider.of<SelectedStationsDataProvider>(context).selectedStations;
+        Provider.of<StationsDataProvider>(context).selectedStations;
 
-    items.sort((a, b) {
+    allStations.sort((a, b) {
       var compareResult = 0;
 
       if (selectedStations.contains(a['id']) &&
@@ -110,7 +154,24 @@ class StationCards extends StatelessWidget {
           selectedStations.contains(b['id'])) {
         compareResult = 1;
       } else {
-        compareResult = a['name'].compareTo(b['name']);
+        if (sortByDistance) {
+          if (a['location'] != null && b['location'] == null) {
+            compareResult = -1;
+          } else if (a['location'] == null && b['location'] != null) {
+            compareResult = 1;
+          } else if (a['location'] != null && b['location'] != null) {
+            compareResult = Provider.of<StationsDataProvider>(context)
+                        .getDistanceFromCurrent(
+                            a['location']?.latitude, a['location']?.longitude) <
+                    Provider.of<StationsDataProvider>(context)
+                        .getDistanceFromCurrent(
+                            b['location']?.latitude, b['location']?.longitude)
+                ? -1
+                : 1;
+          }
+        } else {
+          compareResult = a['name'].compareTo(b['name']);
+        }
       }
 
       //   print("${a['name']} vs ${b['name']} will retrun $compareResult");
@@ -118,15 +179,19 @@ class StationCards extends StatelessWidget {
       return compareResult;
     });
     return new ListView.builder(
-      itemCount: items.length,
+      itemCount: allStations.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
           child: filter == null ||
                   filter == "" ||
-                  items[index]['name']
+                  allStations[index]['name']
                       .toLowerCase()
-                      .contains(filter.toLowerCase())
-              ? StationCard(station: items[index])
+                      .contains(filter.toLowerCase()) ||
+                  (allStations[index]['genericLocation'] != null &&
+                      allStations[index]['genericLocation']
+                          .toLowerCase()
+                          .contains(filter.toLowerCase()))
+              ? StationCard(station: allStations[index])
               : new Container(),
         );
       },
@@ -144,10 +209,13 @@ class StationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isStationSelected = Provider.of<SelectedStationsDataProvider>(context)
+    bool isStationSelected = Provider.of<StationsDataProvider>(context)
         .selectedStations
         .contains(station['id']);
 
+    double distance = Provider.of<StationsDataProvider>(context)
+        .getDistanceFromCurrent(
+            station['location']?.latitude, station['location']?.longitude);
     //print("Stamp: " + station['measuredTimeStamp'].toString());
     return new Card(
         elevation: 5,
@@ -171,6 +239,9 @@ class StationCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                               color: Colors.black54)),
+                      Text(distance != null
+                          ? ' [' + distance.toString() + 'km]'
+                          : ''),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Icon(
@@ -179,45 +250,49 @@ class StationCard extends StatelessWidget {
                               : Icons.local_car_wash,
                           size: 20,
                           color: Colors.grey,
-
                         ),
                       ),
                     ],
                   ),
                 ),
-                subtitle: StationDataCells(stationData: station, showTemperature: true),
+                subtitle: StationDataCells(
+                    stationData: station, isStationManagement: true),
                 //  Text(station['measuredTimeStamp'] != null
                 //     ? new DateFormat.d().add_M().add_y().add_Hm().format(
                 //         DateTime.fromMillisecondsSinceEpoch(
                 //             station['measuredTimeStamp']
                 //                 .millisecondsSinceEpoch))
                 //     : ''),
-                trailing: IconButton(
-                  color: isStationSelected ? Colors.red : Colors.green,
-                  iconSize: 40,
-                  icon: Icon(isStationSelected
-                      ? Icons.remove_circle_outline
-                      : Icons.add_circle_outline),
-                  onPressed: () {
-                    //  try {
-                    if (isStationSelected) {
-                      Provider.of<SelectedStationsDataProvider>(context,
-                              listen: false)
-                          .removeSelectedId(station['id']);
-                    } else {
-                      Provider.of<SelectedStationsDataProvider>(context,
-                              listen: false)
-                          .addSelectedId(station['id']);
-                    }
-                    // } catch (error) {
-                    //   final snackBar = new SnackBar(
-                    //       content: new Text('VIGA: ' + error.toString()),
-                    //       backgroundColor: Colors.red);
+                trailing: Column(
+                  children: <Widget>[
+                    IconButton(
+                      color: isStationSelected ? Colors.red : Colors.green,
+                      iconSize: 40,
+                      icon: Icon(isStationSelected
+                          ? Icons.remove_circle_outline
+                          : Icons.add_circle_outline),
+                      onPressed: () {
+                        //  try {
+                        if (isStationSelected) {
+                          Provider.of<StationsDataProvider>(context,
+                                  listen: false)
+                              .removeSelectedId(station['id']);
+                        } else {
+                          Provider.of<StationsDataProvider>(context,
+                                  listen: false)
+                              .addSelectedId(station['id']);
+                        }
+                        // } catch (error) {
+                        //   final snackBar = new SnackBar(
+                        //       content: new Text('VIGA: ' + error.toString()),
+                        //       backgroundColor: Colors.red);
 
-                    //   // Find the Scaffold in the Widget tree and use it to show a SnackBar!
-                    //   Scaffold.of(context).showSnackBar(snackBar);
-                    // }
-                  },
+                        //   // Find the Scaffold in the Widget tree and use it to show a SnackBar!
+                        //   Scaffold.of(context).showSnackBar(snackBar);
+                        // }
+                      },
+                    ),
+                  ],
                 )
                 //FlatButton(
                 //     child: const Text('Vali', style: TextStyle(color: Colors.white)),

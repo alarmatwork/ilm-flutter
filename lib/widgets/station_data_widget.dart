@@ -1,14 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:ilm/providers/selected_stations_data_provider.dart';
 
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 final df = DateFormat('H:mm');
 
 class StationDataCells extends StatelessWidget {
-  final bool showTemperature;
+  final bool isStationManagement;
 
   const StationDataCells(
-      {Key key, @required this.stationData, this.showTemperature: false})
+      {Key key, @required this.stationData, this.isStationManagement: false})
       : super(key: key);
 
   final stationData;
@@ -20,7 +24,7 @@ class StationDataCells extends StatelessWidget {
         child: Container(
           //color: Colors.yellow,
           child: Wrap(runSpacing: 5.0, spacing: 2.0, children: <Widget>[
-            showTemperature
+            isStationManagement
                 ? StationDataPoint(
                     value: stationData['temp'], unit: 'ºC', label: 'Temp')
                 : Container(),
@@ -34,9 +38,7 @@ class StationDataCells extends StatelessWidget {
               value: stationData['windDirection'],
               custom: Transform.rotate(
                 angle: stationData['windDirection'] != null
-                    ? (stationData['windDirection'].toDouble() - 180) *
-                        3.14 /
-                        180
+                    ? (-1 * stationData['windDirection'].toDouble()) * pi / 180
                     : 0,
                 child: Icon(
                   Icons.arrow_upward,
@@ -69,6 +71,16 @@ class StationDataCells extends StatelessWidget {
               unit: 'mm/h',
               label: 'Sademed',
             ),
+            !isStationManagement
+                ? StationDataPoint(
+                    value: Provider.of<StationsDataProvider>(context)
+                        .getDistanceFromCurrent(
+                            stationData['location']?.latitude,
+                            stationData['location']?.longitude),
+                    unit: 'km',
+                    label: 'Kaugus',
+                  )
+                : Container(),
             // StationDataPoint(
             //   value: stationData['roadStatus'],
             //   unit: '',
@@ -102,7 +114,7 @@ class StationDataPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     if (value != null) {
       return Container(
-          width: 75,
+          width: 80,
 
           //color:Colors.red,
           child: Column(

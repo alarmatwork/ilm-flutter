@@ -1,15 +1,33 @@
+import 'package:latlong/latlong.dart';
+import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class SelectedStationsDataProvider with ChangeNotifier {
-  SelectedStationsDataProvider() {
+class StationsDataProvider with ChangeNotifier {
+  StationsDataProvider() {
     initStoredIds();
+    var location = new Location();
+
+    location.onLocationChanged().listen(_locationListener);
   }
 
   List<String> _selectedStations = [];
+  LocationData _currentLocation;
 
   List<String> get selectedStations => _selectedStations;
+  double getDistanceFromCurrent(double lat, lng) {
+    //_currentLocation.
+    final Distance distance = new Distance();
+    if (lat == null || lng == null || _currentLocation == null) {
+      return null;
+    }
+
+    return distance.as(
+        LengthUnit.Kilometer,
+        new LatLng(_currentLocation.latitude, _currentLocation.longitude),
+        new LatLng(lat, lng));
+  }
 
   set selectedStations(List<String> value) {
     _selectedStations = value;
@@ -79,5 +97,15 @@ class SelectedStationsDataProvider with ChangeNotifier {
     selectedStations.remove(id);
     _storeSelectedIds(selectedStations);
     notifyListeners();
+  }
+
+  void _locationListener(LocationData event) {
+    if (_currentLocation == null ||
+        (event.latitude != _currentLocation.latitude &&
+            event.longitude != _currentLocation.longitude)) {
+      _currentLocation = event;
+      print("EVENT: LAT:${event.latitude} LNG:${event.longitude}");
+      notifyListeners();
+    }
   }
 }

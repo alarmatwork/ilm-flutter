@@ -26,6 +26,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	 <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your location is required for detecting your closes weather station</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Your location is required for detecting your closes weather station</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

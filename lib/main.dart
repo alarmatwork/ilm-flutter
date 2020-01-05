@@ -9,7 +9,7 @@ import 'stations_management_screen.dart';
 
 void main() => runApp(
       ChangeNotifierProvider(
-        create: (context) => SelectedStationsDataProvider(),
+        create: (context) => StationsDataProvider(),
         child: MyApp(),
       ),
     );
@@ -44,14 +44,14 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<SelectedStationsDataProvider>(
+    return Consumer<StationsDataProvider>(
         builder: (context, cart, child) {
       return Scaffold(
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
-          backgroundColor:  Color(0xFF4FB6F0),
+            backgroundColor: Color(0xFF4FB6F0),
             onPressed: () {
-              print("Hello from action button");
+           
               navigateAndDisplaySubFlow(context, (_) {
                 print("Back from selection");
               }, StationsManagementScreen());
@@ -85,7 +85,7 @@ class _StationCarouselState extends State<StationCarousel> {
   @override
   Widget build(BuildContext context) {
     var selectedStations =
-        Provider.of<SelectedStationsDataProvider>(context).selectedStations;
+        Provider.of<StationsDataProvider>(context).selectedStations;
     return new Scaffold(
         backgroundColor: Colors.white,
         // appBar: new AppBar(

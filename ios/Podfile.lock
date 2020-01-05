@@ -221,6 +221,8 @@ PODS:
     - GoogleUtilities/Environment (~> 6.4)
     - GoogleUtilities/UserDefaults (~> 6.4)
   - Flutter (1.0.0)
+  - flutter_compass (0.0.1):
+    - Flutter
   - GoogleAppMeasurement (6.1.7):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -283,6 +285,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - Flutter (from `Flutter`)
+  - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
   - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
@@ -317,6 +320,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core_web/ios"
   Flutter:
     :path: Flutter
+  flutter_compass:
+    :path: ".symlinks/plugins/flutter_compass/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   shared_preferences_macos:
@@ -339,6 +344,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 7a3d02dd11fcc5d79691ee1d3986a52bbf80f00a
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_compass: cbbd285cea1584c7ac9c4e0c3e1f17cbea55e855
   GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2

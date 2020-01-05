@@ -13,25 +13,107 @@ class StationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double circleSize =
-        (MediaQuery.of(context).size.height / 3) + 50.roundToDouble();
+        (MediaQuery.of(context).size.height/3)+50.roundToDouble();
     double fontSize = (circleSize / 5).roundToDouble();
     double circleBorderSize = fontSize;
-    print("Tsirkel: $circleSize font: $fontSize");
-    return Center(
-      child: Column(
-        children: <Widget>[
-          StationNameWidget(stationData: stationData),
-          CicularInfo(
+   // print("Tsirkel: $circleSize font: $fontSize");
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return (constraints.maxHeight > constraints.maxWidth)
+          ? Center(
+              child: OneColumnLayout(
+                  stationData: stationData,
+                  circleSize: circleSize,
+                  circleBorderSize: circleBorderSize,
+                  fontSize: fontSize))
+          : TwoColumnLayout(
+              stationData: stationData,
               circleSize: circleSize,
               circleBorderSize: circleBorderSize,
-              stationData: stationData,
-              fontSize: fontSize),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: StationDataCells(stationData: stationData),
+              fontSize: fontSize);
+    });
+  }
+}
+
+class OneColumnLayout extends StatelessWidget {
+  const OneColumnLayout({
+    Key key,
+    @required this.stationData,
+    @required this.circleSize,
+    @required this.circleBorderSize,
+    @required this.fontSize,
+  }) : super(key: key);
+
+  final dynamic stationData;
+  final double circleSize;
+  final double circleBorderSize;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        StationNameWidget(stationData: stationData),
+        CicularInfo(
+            circleSize: circleSize,
+            circleBorderSize: circleBorderSize,
+            stationData: stationData,
+            fontSize: fontSize),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: StationDataCells(stationData: stationData),
+        ),
+      ],
+    );
+  }
+}
+
+class TwoColumnLayout extends StatelessWidget {
+  const TwoColumnLayout({
+    Key key,
+    @required this.stationData,
+    @required this.circleSize,
+    @required this.circleBorderSize,
+    @required this.fontSize,
+  }) : super(key: key);
+
+  final dynamic stationData;
+  final double circleSize;
+  final double circleBorderSize;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      //mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          height: (MediaQuery.of(context).size.height),
+          width: (MediaQuery.of(context).size.width) / 2,
+          child: Column(
+            children: <Widget>[
+              StationNameWidget(stationData: stationData),
+              CicularInfo(
+                  circleSize: circleSize,
+                  circleBorderSize: circleBorderSize,
+                  stationData: stationData,
+                  fontSize: fontSize),
+            ],
           ),
-        ],
-      ),
+        ),
+        Container(
+          height: (MediaQuery.of(context).size.height),
+          width: (MediaQuery.of(context).size.width) / 2,
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: StationDataCells(stationData: stationData),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
