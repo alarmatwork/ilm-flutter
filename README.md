@@ -1,3 +1,3 @@
 # ilm
 
-A Weather Stations monitoring app for mobile in Estonia
+A freeware Weather Stations monitoring app for mobile in Estonia to lear Flutter
