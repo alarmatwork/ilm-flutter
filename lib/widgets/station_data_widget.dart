@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:ilm/providers/stations_data_provider.dart';
-
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +10,7 @@ final df = DateFormat('H:mm');
 class StationDataCells extends StatelessWidget {
   final bool isStationManagement;
 
-  const StationDataCells(
-      {Key key, @required this.stationData, this.isStationManagement: false})
-      : super(key: key);
+  const StationDataCells({Key key, @required this.stationData, this.isStationManagement: false}) : super(key: key);
 
   final stationData;
 
@@ -24,16 +21,9 @@ class StationDataCells extends StatelessWidget {
         child: Container(
           //color: Colors.yellow,
           child: Wrap(runSpacing: 5.0, spacing: 2.0, children: <Widget>[
-            isStationManagement
-                ? StationDataPoint(
-                    value: stationData['temp'], unit: 'ºC', label: 'Temp')
-                : Container(),
-            StationDataPoint(
-                value: stationData['windSpeed'], unit: 'm/s', label: 'Tuul'),
-            StationDataPoint(
-                value: stationData['windSpeedMax'],
-                unit: 'm/s',
-                label: 'Max Tuul'),
+            isStationManagement ? StationDataPoint(value: stationData['temp'], unit: 'ºC', label: 'Temp') : Container(),
+            StationDataPoint(value: stationData['windSpeed'], unit: 'm/s', label: 'Tuul'),
+            StationDataPoint(value: stationData['windSpeedMax'], unit: 'm/s', label: 'Max Tuul'),
             StationDataPoint(
               value: stationData['windDirection'],
               custom: Transform.rotate(
@@ -59,8 +49,32 @@ class StationDataCells extends StatelessWidget {
               label: 'Teetemp.',
             ),
             StationDataPoint(
-              value: stationData['visibility'] != null &&
-                      stationData['visibility'] is int
+              value: stationData['waterTemp'],
+              unit: 'ºC',
+              label: 'Vesi temp',
+            ),
+            StationDataPoint(
+              value: stationData['waveLen'],
+              unit: 'm',
+              label: 'Laineperiood',
+            ),
+            StationDataPoint(
+              value: stationData['waveHeight'] == "" ? 0 : stationData['waveHeight'],
+              unit: 'm',
+              label: 'Lainekõrgus',
+            ),
+            StationDataPoint(
+              value: stationData['waveMax'] == "" ? 0 : stationData['waveMax'],
+              unit: 'm',
+              label: 'Max laine',
+            ),
+            StationDataPoint(
+              value: stationData['waterLevel'],
+              unit: 'cm',
+              label: 'Veetase',
+            ),
+            StationDataPoint(
+              value: stationData['visibility'] != null && stationData['visibility'] is int
                   ? stationData['visibility'] / 1000
                   : null,
               unit: 'km',
@@ -74,9 +88,7 @@ class StationDataCells extends StatelessWidget {
             !isStationManagement
                 ? StationDataPoint(
                     value: Provider.of<StationsDataProvider>(context)
-                        .getDistanceFromCurrent(
-                            stationData['location']?.latitude,
-                            stationData['location']?.longitude),
+                        .getDistanceFromCurrent(stationData['location']?.latitude, stationData['location']?.longitude),
                     unit: 'km',
                     label: 'Kaugus',
                   )
@@ -88,8 +100,7 @@ class StationDataCells extends StatelessWidget {
             // ),
             StationDataPoint(
               value: df
-                  .format(DateTime.fromMillisecondsSinceEpoch(
-                      stationData['measuredTimeStamp']?.millisecondsSinceEpoch))
+                  .format(DateTime.fromMillisecondsSinceEpoch(stationData['measuredTimeStamp']?.millisecondsSinceEpoch))
                   .toString(),
               unit: '',
               label: 'MÕÕDETUD',

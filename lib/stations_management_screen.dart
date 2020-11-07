@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ilm/widgets/station_data_widget.dart';
 import 'package:provider/provider.dart';
+
 import 'providers/stations_data_provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(new MaterialApp(
       home: new StationsManagementScreen(),
@@ -60,8 +61,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLocationAvailable =
-        Provider.of<StationsDataProvider>(context).currentLocation != null;
+    bool isLocationAvailable = Provider.of<StationsDataProvider>(context).currentLocation != null;
     if (sortByName == null) {
       sortByName = !isLocationAvailable;
     }
@@ -72,50 +72,49 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
             ),
             backgroundColor: Colors.white,
             title: new TextField(
-              decoration: new InputDecoration(
-                  hintText: "Otsimiseks trüki ilmajaama nimi siia"),
+              decoration: new InputDecoration(hintText: "Otsimiseks trüki ilmajaama nimi siia"),
               controller: controller,
             )),
         body: new Column(children: <Widget>[
           new Padding(
             padding: new EdgeInsets.only(top: 20.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Sorteeri :',
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  new Radio(
-                      value: !sortByName,
-                      groupValue: group,
-                      onChanged: isLocationAvailable
-                          ? (value) {
-                              setState(() {
-                                sortByName = false;
-                              });
-                            }
-                          : null),
-                  new Text(
-                    'Kauguse',
-                    style: new TextStyle(fontSize: 16.0, color: isLocationAvailable ? Colors.black : Colors.black54),
-                  ),
-                  new Radio(
-                      value: sortByName,
-                      groupValue: group,
-                      onChanged: (value) {
-                        setState(() {
-                          sortByName = true;
-                        });
-                      }),
-                  new Text(
-                    'Nime järgi',
-                    style: new TextStyle(fontSize: 16.0,),
-                  ),
-                ]),
+            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+              Text(
+                'Sorteeri :',
+                style: new TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                ),
+              ),
+              new Radio(
+                  value: !sortByName,
+                  groupValue: group,
+                  onChanged: isLocationAvailable
+                      ? (value) {
+                          setState(() {
+                            sortByName = false;
+                          });
+                        }
+                      : null),
+              new Text(
+                'Kauguse',
+                style: new TextStyle(fontSize: 16.0, color: isLocationAvailable ? Colors.black : Colors.black54),
+              ),
+              new Radio(
+                  value: sortByName,
+                  groupValue: group,
+                  onChanged: (value) {
+                    setState(() {
+                      sortByName = true;
+                    });
+                  }),
+              new Text(
+                'Nime järgi',
+                style: new TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+            ]),
           ),
           // new TextField(
           //   decoration:
@@ -136,11 +135,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
 class StationCards extends StatelessWidget {
   final bool sortByDistance;
 
-  const StationCards(
-      {Key key,
-      @required this.allStations,
-      @required this.filter,
-      this.sortByDistance: true})
+  const StationCards({Key key, @required this.allStations, @required this.filter, this.sortByDistance: true})
       : super(key: key);
 
   final List<dynamic> allStations;
@@ -148,17 +143,14 @@ class StationCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> selectedStations =
-        Provider.of<StationsDataProvider>(context).selectedStations;
+    List<String> selectedStations = Provider.of<StationsDataProvider>(context).selectedStations;
 
     allStations.sort((a, b) {
       var compareResult = 0;
 
-      if (selectedStations.contains(a['id']) &&
-          !selectedStations.contains(b['id'])) {
+      if (selectedStations.contains(a['id']) && !selectedStations.contains(b['id'])) {
         compareResult = -1;
-      } else if (!selectedStations.contains(a['id']) &&
-          selectedStations.contains(b['id'])) {
+      } else if (!selectedStations.contains(a['id']) && selectedStations.contains(b['id'])) {
         compareResult = 1;
       } else {
         if (sortByDistance) {
@@ -168,12 +160,10 @@ class StationCards extends StatelessWidget {
             compareResult = 1;
           } else if (a['location'] != null && b['location'] != null) {
             double aDistance = Provider.of<StationsDataProvider>(context)
-                .getDistanceFromCurrent(
-                    a['location']?.latitude, a['location']?.longitude);
+                .getDistanceFromCurrent(a['location']?.latitude, a['location']?.longitude);
 
             double bDistance = Provider.of<StationsDataProvider>(context)
-                .getDistanceFromCurrent(
-                    b['location']?.latitude, b['location']?.longitude);
+                .getDistanceFromCurrent(b['location']?.latitude, b['location']?.longitude);
 
             if (aDistance != null) {
               compareResult = aDistance < bDistance ? -1 : 1;
@@ -196,13 +186,9 @@ class StationCards extends StatelessWidget {
         return Container(
           child: filter == null ||
                   filter == "" ||
-                  allStations[index]['name']
-                      .toLowerCase()
-                      .contains(filter.toLowerCase()) ||
+                  allStations[index]['name'].toLowerCase().contains(filter.toLowerCase()) ||
                   (allStations[index]['genericLocation'] != null &&
-                      allStations[index]['genericLocation']
-                          .toLowerCase()
-                          .contains(filter.toLowerCase()))
+                      allStations[index]['genericLocation'].toLowerCase().contains(filter.toLowerCase()))
               ? StationCard(station: allStations[index])
               : new Container(),
         );
@@ -221,13 +207,10 @@ class StationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isStationSelected = Provider.of<StationsDataProvider>(context)
-        .selectedStations
-        .contains(station['id']);
+    bool isStationSelected = Provider.of<StationsDataProvider>(context).selectedStations.contains(station['id']);
 
     double distance = Provider.of<StationsDataProvider>(context)
-        .getDistanceFromCurrent(
-            station['location']?.latitude, station['location']?.longitude);
+        .getDistanceFromCurrent(station['location']?.latitude, station['location']?.longitude);
     //print("Stamp: " + station['measuredTimeStamp'].toString());
     return new Card(
         elevation: 5,
@@ -247,19 +230,16 @@ class StationCard extends StatelessWidget {
                     children: <Widget>[
                       new Text(station['name'].toString(),
                           style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black54)),
-                      Text(distance != null
-                          ? ' (' + distance.toString() + 'km)'
-                          : ''),
+                              fontFamily: 'Lato', fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black54)),
+                      Text(distance != null ? ' (' + distance.toString() + 'km)' : ''),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Icon(
                           station['type'] == 'ILMATEENISTUS'
                               ? Icons.cloud_queue
-                              : Icons.local_car_wash,
+                              : station['type'] == 'TARKTEE'
+                                  ? Icons.edit_road
+                                  : Icons.waves_rounded,
                           size: 20,
                           color: Colors.grey,
                         ),
@@ -267,8 +247,7 @@ class StationCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                subtitle: StationDataCells(
-                    stationData: station, isStationManagement: true),
+                subtitle: StationDataCells(stationData: station, isStationManagement: true),
                 //  Text(station['measuredTimeStamp'] != null
                 //     ? new DateFormat.d().add_M().add_y().add_Hm().format(
                 //         DateTime.fromMillisecondsSinceEpoch(
@@ -280,19 +259,13 @@ class StationCard extends StatelessWidget {
                     IconButton(
                       color: isStationSelected ? Colors.red : Colors.green,
                       iconSize: 40,
-                      icon: Icon(isStationSelected
-                          ? Icons.remove_circle_outline
-                          : Icons.add_circle_outline),
+                      icon: Icon(isStationSelected ? Icons.remove_circle_outline : Icons.add_circle_outline),
                       onPressed: () {
                         //  try {
                         if (isStationSelected) {
-                          Provider.of<StationsDataProvider>(context,
-                                  listen: false)
-                              .removeSelectedId(station['id']);
+                          Provider.of<StationsDataProvider>(context, listen: false).removeSelectedId(station['id']);
                         } else {
-                          Provider.of<StationsDataProvider>(context,
-                                  listen: false)
-                              .addSelectedId(station['id']);
+                          Provider.of<StationsDataProvider>(context, listen: false).addSelectedId(station['id']);
                         }
                         // } catch (error) {
                         //   final snackBar = new SnackBar(

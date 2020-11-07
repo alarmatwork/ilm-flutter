@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 
@@ -23,7 +24,6 @@ class _CompassState extends State<Compass> {
   void initState() {
     super.initState();
     print("COMPASS init was called");
-    
   }
 
   @override
@@ -36,7 +36,6 @@ class _CompassState extends State<Compass> {
 
   @override
   void didChangeDependencies() {
-    
     super.didChangeDependencies();
     _subscription = FlutterCompass.events.listen(_onData);
     print("COMPASS didChangeDependencies was called");
@@ -46,8 +45,8 @@ class _CompassState extends State<Compass> {
     int windDirection = widget.stationData['windDirection'];
     if (mounted && windDirection != null) {
       setState(() {
-        _heading = (x + windDirection) % 360;
-       // print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
+        _heading = (x + 180 + windDirection) % 360;
+        // print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
       });
     } else {
       //   print("Cant paint. not mounted");
@@ -64,8 +63,7 @@ class _CompassState extends State<Compass> {
   Widget build(BuildContext context) {
     return (widget.stationData['windDirection'] != null)
         ? CustomPaint(
-            foregroundPainter: CompassPainter(angle: _heading),
-            child: Center(child: Text(_readout, style: _style)))
+            foregroundPainter: CompassPainter(angle: _heading), child: Center(child: Text(_readout, style: _style)))
         : Container();
   }
 }
@@ -74,7 +72,7 @@ class CompassPainter extends CustomPainter {
   CompassPainter({@required this.angle}) : super();
 
   final double angle;
-  double get rotation => (-1 * (angle) * pi) / 180;
+  double get rotation => ((angle) * pi) / 180;
 
   Paint get _brush => new Paint()
     ..style = PaintingStyle.stroke
