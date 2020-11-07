@@ -45,8 +45,8 @@ class _CompassState extends State<Compass> {
     int windDirection = widget.stationData['windDirection'];
     if (mounted && windDirection != null) {
       setState(() {
-        _heading = (x + 180 + windDirection) % 360;
-        // print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
+        _heading = (360 - x + 180 + windDirection) % 360;
+        print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
       });
     } else {
       //   print("Cant paint. not mounted");

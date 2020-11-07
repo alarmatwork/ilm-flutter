@@ -18,6 +18,16 @@ exports.triggerUpdate = functions.https.onRequest(async (request, response) => {
     response.json({ tarkteeResult: tarkteeResult, ilmateenistusResult: ilmateenistusResult });
 });
 
+exports.fixLocations = functions.https.onRequest(async (request, response) => {
+    const pluginIlmateenistus = require("./plugins/ilmateenistus_importer");
+    let [ilmateenistusResult] = await Promise.all([pluginIlmateenistus.fixIlmateenistusLocationsOnce()]);
+
+    console.log("All fixing DONE");
+    response.json({ ilmateenistusResult: ilmateenistusResult });
+});
+
+
+
 exports.loadTartkteeLocationsFromXML = functions.https.onRequest(async (request, response) => {
     const tarkteeLocationParser = require("./plugins/tarktee_location_parser");
     const fs = require('fs');

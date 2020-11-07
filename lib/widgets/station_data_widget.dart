@@ -16,6 +16,7 @@ class StationDataCells extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("STATION DATA:" + stationData['measuredTimeStamp'].toString());
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
       Expanded(
         child: Container(
@@ -28,7 +29,7 @@ class StationDataCells extends StatelessWidget {
               value: stationData['windDirection'],
               custom: Transform.rotate(
                 angle: stationData['windDirection'] != null
-                    ? (-1 * stationData['windDirection'].toDouble()) * pi / 180
+                    ? (180 + stationData['windDirection'].toDouble()) * pi / 180
                     : 0,
                 child: Icon(
                   Icons.arrow_upward,

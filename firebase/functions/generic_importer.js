@@ -2,16 +2,17 @@ function saveStationData(record) {
     try {
         const admin = require('firebase-admin');
         let db = admin.firestore();
+
         // console.log("Updating station record: " + JSON.stringify(record));
         let stationRef = db.collection('stations').doc(record.id);
-        let resultRef = stationRef.set(record, { merge: true }).catch((err) => {
+        let resultRef = stationRef.set(record).catch((err) => {
             console.error("Error happened with SET with record:", record, error);
         });
 
         return resultRef;
     }
     catch (exports) {
-        console.error("Error happened with record:", record, error);
+        console.error("Error happened with record:", record, exports);
     }
 }
 
