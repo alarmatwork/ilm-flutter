@@ -15,7 +15,6 @@ class Compass extends StatefulWidget {
 
 class _CompassState extends State<Compass> {
   double _heading = 0;
-
   StreamSubscription<double> _subscription;
 
   String get _readout => ''; //_heading.toStringAsFixed(0) + '°';
@@ -46,7 +45,7 @@ class _CompassState extends State<Compass> {
     if (mounted && windDirection != null) {
       setState(() {
         _heading = (360 - x + 180 + windDirection) % 360;
-        print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
+        //print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
       });
     } else {
       //   print("Cant paint. not mounted");
