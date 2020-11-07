@@ -47,7 +47,7 @@ async function importMiinisadam() {
             const waterTemp = parseNumber($('.veetemp').text().split(' ')[0].trim());
             const waveLen = parseNumber($('.laineperiood').text().split(' ')[0].trim());
             const waveHeight = parseNumber($('.laine').text().split(' ')[0].trim());
-            const waveMax = parseNumber($('.lainemax').text().split(' ')[1].trim());
+            const waveMax = parseNumber($('.lainemax').text().split(' ')[2].trim());
 
             const humidity = parseNumber($('.niiskus').text().split(' ')[0].trim());
             const windDirection = parseNumber($('.tuulesuund').text().replace("°", '').trim());
@@ -88,8 +88,6 @@ async function importMiinisadam() {
                 ]
             }
 
-            console.log("Windy RECORD: " + JSON.stringify(windyRecord));
-            console.log(stationRecord);
 
             if (stationRecord.temp) {
                 saveStationData(stationRecord);

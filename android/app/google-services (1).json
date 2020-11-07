@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "226870984230",
+    "firebase_url": "https://ilmajaam-95459.firebaseio.com",
+    "project_id": "ilmajaam-95459",
+    "storage_bucket": "ilmajaam-95459.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226870984230:android:3fb7178d76e104b45370e7",
+        "android_client_info": {
+          "package_name": "com.tegume.mobile.meteo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226870984230-8u53nu5kr8105pkp4e617qm347l1ivth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG8lxmWmnonPB5f_5WXMD_cahc00nPVTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226870984230-8u53nu5kr8105pkp4e617qm347l1ivth.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "226870984230-5l2itjosp597h91818ac9tmaeaqvpam2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tegume.ilm"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
