@@ -18,7 +18,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
   TextEditingController controller = new TextEditingController();
   String filter;
   List allStations = [];
-  bool sortByName = false;
+  bool sortByName;
   bool group = true;
 
   @override
@@ -60,6 +60,11 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLocationAvailable =
+        Provider.of<StationsDataProvider>(context).currentLocation != null;
+    if (sortByName == null) {
+      sortByName = !isLocationAvailable;
+    }
     return new Scaffold(
         appBar: new AppBar(
             iconTheme: IconThemeData(
@@ -87,14 +92,16 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
                   new Radio(
                       value: !sortByName,
                       groupValue: group,
-                      onChanged: (value) {
-                        setState(() {
-                          sortByName = false;
-                        });
-                      }),
+                      onChanged: isLocationAvailable
+                          ? (value) {
+                              setState(() {
+                                sortByName = false;
+                              });
+                            }
+                          : null),
                   new Text(
                     'Kauguse',
-                    style: new TextStyle(fontSize: 16.0),
+                    style: new TextStyle(fontSize: 16.0, color: isLocationAvailable ? Colors.black : Colors.black54),
                   ),
                   new Radio(
                       value: sortByName,
@@ -106,7 +113,7 @@ class StationsManagementScreenState extends State<StationsManagementScreen> {
                       }),
                   new Text(
                     'Nime järgi',
-                    style: new TextStyle(fontSize: 16.0),
+                    style: new TextStyle(fontSize: 16.0,),
                   ),
                 ]),
           ),
@@ -160,14 +167,17 @@ class StationCards extends StatelessWidget {
           } else if (a['location'] == null && b['location'] != null) {
             compareResult = 1;
           } else if (a['location'] != null && b['location'] != null) {
-            compareResult = Provider.of<StationsDataProvider>(context)
-                        .getDistanceFromCurrent(
-                            a['location']?.latitude, a['location']?.longitude) <
-                    Provider.of<StationsDataProvider>(context)
-                        .getDistanceFromCurrent(
-                            b['location']?.latitude, b['location']?.longitude)
-                ? -1
-                : 1;
+            double aDistance = Provider.of<StationsDataProvider>(context)
+                .getDistanceFromCurrent(
+                    a['location']?.latitude, a['location']?.longitude);
+
+            double bDistance = Provider.of<StationsDataProvider>(context)
+                .getDistanceFromCurrent(
+                    b['location']?.latitude, b['location']?.longitude);
+
+            if (aDistance != null) {
+              compareResult = aDistance < bDistance ? -1 : 1;
+            }
           }
         }
 

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:226870984230:android:f91a6858f662dc9d5370e7",
+        "mobilesdk_app_id": "1:226870984230:android:3fb7178d76e104b45370e7",
         "android_client_info": {
-          "package_name": "com.tegume.ilm"
+          "package_name": "com.tegume.mobile.meteo"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "226870984230-8u53nu5kr8105pkp4e617qm347l1ivth.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "226870984230-5l2itjosp597h91818ac9tmaeaqvpam2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tegume.mobile.meteo"
+              }
             }
           ]
         }

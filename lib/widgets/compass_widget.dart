@@ -23,27 +23,22 @@ class _CompassState extends State<Compass> {
   void initState() {
     super.initState();
     print("COMPASS init was called");
-    if (_subscription != null) {
-      print("COMPASS-RESUME");
-      _subscription.resume();
-    } else {
-      _subscription = FlutterCompass.events.listen(_onData);
-    }
+    
   }
 
   @override
   void dispose() {
     super.dispose();
     print("COMPASS dispose was called");
-    _subscription.pause();
+    _subscription.cancel();
     print("COMPASS-PAUSE");
   }
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+    
     super.didChangeDependencies();
-
+    _subscription = FlutterCompass.events.listen(_onData);
     print("COMPASS didChangeDependencies was called");
   }
 
@@ -52,8 +47,7 @@ class _CompassState extends State<Compass> {
     if (mounted && windDirection != null) {
       setState(() {
         _heading = (x + windDirection) % 360;
-        print(
-            "compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
+       // print("compass: $x calculcated: $_heading from station: ${widget.stationData['windDirection']}");
       });
     } else {
       //   print("Cant paint. not mounted");

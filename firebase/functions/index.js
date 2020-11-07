@@ -10,8 +10,9 @@ admin.initializeApp();
 exports.triggerUpdate = functions.https.onRequest(async (request, response) => {
     const pluginTarktee = require("./plugins/tarktee_importer");
     const pluginIlmateenistus = require("./plugins/ilmateenistus_importer");
+    const pluginMiinisadam = require("./plugins/miinisadam_importer");
 
-    let [tarkteeResult, ilmateenistusResult] = await Promise.all([pluginTarktee.importTarktee(), pluginIlmateenistus.importIlmateenistus()]);
+    let [tarkteeResult, ilmateenistusResult] = await Promise.all([pluginTarktee.importTarktee(), pluginIlmateenistus.importIlmateenistus(), pluginMiinisadam.importMiinisadam()]);
 
     console.log("All imports DONE");
     response.json({ tarkteeResult: tarkteeResult, ilmateenistusResult: ilmateenistusResult });
@@ -101,6 +102,16 @@ exports.scheduledIlmateenistusUpdate = functions.pubsub.schedule('10 */1 * * *')
     return ilmateenistusPromise;
 });
 
+
+exports.scheduledMiinisadamaUpdate = functions.pubsub.schedule('every 10 minutes').onRun((context) => {
+    console.log('Triggering Updates - Miinisadam');
+    const plugin = require("./plugins/miinisadam_importer");
+    let importPromise = plugin.importMiinisadam().catch(error => { console.log('caught', err.message); });
+
+    console.log('Update Scheduler finished: ', importPromise);
+
+    return importPromise;
+});
 
 function getURLParams(url) {
     if (url.indexOf('/') < 0) {
