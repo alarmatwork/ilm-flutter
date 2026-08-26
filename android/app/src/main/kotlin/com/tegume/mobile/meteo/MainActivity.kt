@@ -1,4 +1,4 @@
-package com.example.ilm
+package com.tegume.mobile.meteo
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

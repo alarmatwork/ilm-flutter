@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
     ));
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ilm 2.0 - Ilmajaam sinu taskus',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -44,14 +45,12 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<StationsDataProvider>(
-        builder: (context, cart, child) {
+    return Consumer<StationsDataProvider>(builder: (context, cart, child) {
       return Scaffold(
         backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xFF4FB6F0),
             onPressed: () {
-           
               navigateAndDisplaySubFlow(context, (_) {
                 print("Back from selection");
               }, StationsManagementScreen());

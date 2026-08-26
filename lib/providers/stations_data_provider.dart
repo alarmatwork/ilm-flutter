@@ -7,15 +7,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class StationsDataProvider with ChangeNotifier {
   StationsDataProvider() {
     initStoredIds();
-    var location = new Location();
-    if (location.onLocationChanged() != null){
-      location.onLocationChanged().listen(_locationListener);
-    }
+
+    triggerLocationUpdateInMinues(0, () {});
+
+    // if (location.onLocationChanged() != null){
+    //   location.onLocationChanged().listen(_locationListener);
+    // }
   }
 
+  void triggerLocationUpdateInMinues(double delayInMinutes, Function callback) {
+    Future.delayed(Duration(milliseconds: (delayInMinutes * 60 * 1000).toInt()),
+        () {
+      try {
+        location.getLocation().then((measuredLocation) {
+          _locationListener(measuredLocation);
+          triggerLocationUpdateInMinues(30, callback);
+        }).catchError((error) {
+          print("Error reading location, will retry soon: " + error);
+          triggerLocationUpdateInMinues(0.2, callback);
+        });
+      } catch (err) {
+        triggerLocationUpdateInMinues(0.2, callback);
+      }
+    });
+  }
+
+  var location = new Location();
   List<String> _selectedStations = [];
   LocationData _currentLocation;
 
+  LocationData get currentLocation => _currentLocation;
   List<String> get selectedStations => _selectedStations;
   double getDistanceFromCurrent(double lat, lng) {
     //_currentLocation.
