@@ -11,11 +11,19 @@ exports.triggerUpdate = functions.https.onRequest(async (request, response) => {
     const pluginTarktee = require("./plugins/tarktee_importer");
     const pluginIlmateenistus = require("./plugins/ilmateenistus_importer");
     const pluginMiinisadam = require("./plugins/miinisadam_importer");
+    const pluginTallinnaMadal = require("./plugins/tallinnamadal_importer");
 
-    let [tarkteeResult, ilmateenistusResult] = await Promise.all([pluginTarktee.importTarktee(), pluginIlmateenistus.importIlmateenistus(), pluginMiinisadam.importMiinisadam()]);
+    let [ tallinnaMadalResult
+        //tarkteeResult, ilmateenistusResult
+    ] = await Promise.all([pluginTallinnaMadal.importTallinnaMadal()
+        //, pluginTarktee.importTarktee(), pluginIlmateenistus.importIlmateenistus(), pluginMiinisadam.importMiinisadam()
+    ]);
 
     console.log("All imports DONE");
-    response.json({ tarkteeResult: tarkteeResult, ilmateenistusResult: ilmateenistusResult });
+    response.json({ 
+        tallinnaMadalResult: tallinnaMadalResult
+        //,tarkteeResult: tarkteeResult, ilmateenistusResult: ilmateenistusResult 
+    });
 });
 
 exports.fixLocations = functions.https.onRequest(async (request, response) => {
@@ -123,6 +131,15 @@ exports.scheduledMiinisadamaUpdate = functions.pubsub.schedule('every 10 minutes
     return importPromise;
 });
 
+exports.scheduledTallinnaMadalUpdate = functions.pubsub.schedule('every 10 minutes').onRun((context) => {
+    console.log('Triggering Updates - TallinnaMadal');
+    const plugin = require("./plugins/tallinnamadal_importer");
+    let importPromise = plugin.importTallinnaMadal().catch(error => { console.log('caught', err.message); });
+
+    console.log('Update Scheduler finished: ', importPromise);
+
+    return importPromise;
+});
 function getURLParams(url) {
     if (url.indexOf('/') < 0) {
         return []
